@@ -27,7 +27,7 @@ Name - [GitHub Username](Link to personal GitHub)
 
 -   Camilo Villavicencio - [camilohv](https://github.com/camilohv)
 -   Hyunjun Choi - [hunjunChoi](https://github.com/hunjunChoi)
--
+-   Riley Valls - [rileyv327](https://github.com/rileyv327)
 -
 -
 
@@ -39,7 +39,7 @@ There are countless instances of people reuploading images without sourcing the 
 
 There are barely any tools available to combat this issue. The ones that are currently available are cumbersome and tedious to use. Because of this, we are creating **an easy to use web-app tool that parses the internet for reposted instances of user input images, and returns the relevant results to the user.**
 
-The concept was originally proposed by Camilo Villavicencio, and is currently being developed and refined with _, _, _, and _.
+The concept was originally proposed by Camilo Villavicencio, and is currently being developed and refined with Riley Valls, Hyunjun Choi, _, and _.
 
 ## Instructions
 
