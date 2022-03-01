@@ -29,7 +29,7 @@ Name - [GitHub Username](Link to personal GitHub)
 -   Hyunjun Choi - [hunjunChoi](https://github.com/hunjunChoi)
 -   Riley Valls - [rileyv327](https://github.com/rileyv327)
 -   Shery Mittal - [shrey-mittall](https://github.com/shrey-mittall)
--
+-   Duardo Akerele - [DAkerele](https://github.com/DAkerele)
 
 ## Project history
 
