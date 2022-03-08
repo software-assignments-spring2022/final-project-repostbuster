@@ -43,6 +43,7 @@ const  Home = props => {
                 aria-describedby="basic-addon1"
                 placeholder= "Enter Image URL..."
                 />
+                
                 <Button variant="outline-secondary" id="button-addon1">
                 Search
                 </Button>
