@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Results.css";
 import { LoremPicsum } from "react-lorem-picsum";
+import Pagination from "./Pagination";
+import Result from "./Result";
 
 function Results() {
     
+
     // fetch random results (limit of 200 requests per day so don't leave this code on...)
-    /*const results = []
+    /*
     fetch('https://my.api.mockaroo.com/reverse_image.json?key=093a4150')
     .then(response => response.json())
     .then(function (result) {
@@ -14,8 +17,23 @@ function Results() {
         }
     })
     .catch(error => console.log('error', error));
-    */
+    
+    const [results, setResults] = useState([]);
+    const [error, setError] = useState('');
 
+    useEffect(() => {
+      fetch('https://my.api.mockaroo.com/reverse_image.json?key=093a4150')
+        .then((response) => {
+          if (response.ok) return response.json();
+          throw new Error('something went wrong while requesting posts');
+        })
+        .then((results) => setResults(results))
+        .catch((error) => setError(error.message));
+    }, []);
+
+    if (error) return <h1>{error}</h1>;
+    
+    */
     const results = [{
         "source": "Alphazap",
         "date": "01/21/2022",
@@ -58,33 +76,28 @@ function Results() {
         "link": "webeden.co.uk"
       }
     ];
-
-    for (var i = 0; i < results.length; i++) {
-       console.log(results[i])
-    }
     
-
     return (
         <div className="container">
             <div className="original">
-                <h3>Original Image</h3>
+                <h2>Original Image</h2>
                 <LoremPicsum width={175} height={175} />
             </div>
 
-            <h3>Found Matches</h3>
             <div className="result-container">
-                {results && results.map(result =>
-                    <div className="result" key={result.id}>
-                        <div className="result-image">
-                        <img src="https://picsum.photos/150/150" Image1 alt="Logo" random={1}/>
-                        </div>
-                        <div className="details">
-                            <p>{result.source}</p>
-                            <p>{result.date}</p>
-                            <a href={"//" + result.link}>Go to Image</a>
-                        </div>
-                    </div>
-                )}
+              {results.length > 0 ? (
+                <>
+                  <Pagination
+                    data={results}
+                    RenderComponent={Result}
+                    title={results.length + " Matches Found"}
+                    pageLimit={5}
+                    dataLimit={2}
+                  />
+                </>
+              ) : (
+              <h1>No Posts to display</h1>
+              )}
             </div>
 
             <button className="download">Download Results</button>
@@ -93,7 +106,3 @@ function Results() {
 }
 
 export default Results;
-
-
-
-
