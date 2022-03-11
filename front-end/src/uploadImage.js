@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./uploadImage.css";
+import searchSetting from "./searchSetting.js";
 
 const data = [
     {
@@ -87,6 +88,9 @@ const NavBar = () => {
                     onChange={(event) => setImageFile(event.target.files[0])}
                 ></input>
             </form> */}
+
+            {/* <searchSetting imageName={imageFile[0].name} /> */}
+
             <input
                 className="navbar__title navbar__item"
                 type="file"
@@ -115,9 +119,14 @@ const NavBar = () => {
                 Submit
             </Link>
 
+            {/* <button onClick={() => }/> */}
+
+            {/* <div onClick={imageFile[0].name}>Submit</div> */}
+
             {/* <a className="navbar__item_right" href="/searchSetting">
                 Submit
             </a> */}
+
             <div className="navbar__item_left">Back</div>
         </header>
     );

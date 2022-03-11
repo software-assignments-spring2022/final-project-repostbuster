@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Header from "./components/Header.js";
 import Results from "./components/Results.js";
 import UploadImage from "./uploadImage.js";
+import SearchSetting from "./searchSetting";
 
 function App() {
     return (
@@ -15,7 +16,11 @@ function App() {
                         path="/uploadimage"
                         element={<UploadImage />}
                     ></Route>
-                    {/* <Route name="searchSetting" path="/searchSetting" /> */}
+                    <Route
+                        name="searchSetting"
+                        path="/searchSetting"
+                        element={<SearchSetting />}
+                    />
                 </Routes>
             </BrowserRouter>
         </div>
