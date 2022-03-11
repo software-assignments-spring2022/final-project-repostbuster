@@ -33,7 +33,7 @@ function Pagination ({ data, RenderComponent, title, pageLimit, dataLimit }) {
         <div>
             <h1>{title}</h1>
 
-            {/* show the posts, 10 posts at a time */}
+            {/* show the posts, 2 posts at a time */}
             <div className="dataContainer">
             {getPaginatedData().map((d, idx) => (
                 <RenderComponent key={idx} data={d} />
@@ -61,7 +61,7 @@ function Pagination ({ data, RenderComponent, title, pageLimit, dataLimit }) {
                 onClick={changePage}
                 className={`paginationItem ${currentPage === item ? 'active' : null}`}
                 >
-                <span>{item}</span>
+                    {index+1}
                 </button>
             ))}
 
