@@ -15,7 +15,7 @@ function App() {
                         path="/uploadimage"
                         element={<UploadImage />}
                     ></Route>
-                    <Route name="searchSetting" path="/searchSetting" />
+                    {/* <Route name="searchSetting" path="/searchSetting" /> */}
                 </Routes>
             </BrowserRouter>
         </div>

@@ -97,12 +97,12 @@ const NavBar = () => {
                 <img src={imageSrc} />
             ))}
 
-            <section>
-                {/* {imageFile.map((item) => (
+            {/* <section> */}
+            {/* {imageFile.map((item) => (
                     <p> {item.name}</p>
                 ))} */}
-                {imageFile[0].name}
-            </section>
+            {/* {imageFile[0].name}
+            </section> */}
 
             {/* Click submit --> redirect to searchSetting */}
             {/* Give the image & file name to searchSetting */}
@@ -114,6 +114,10 @@ const NavBar = () => {
             >
                 Submit
             </Link>
+
+            {/* <a className="navbar__item_right" href="/searchSetting">
+                Submit
+            </a> */}
             <div className="navbar__item_left">Back</div>
         </header>
     );
