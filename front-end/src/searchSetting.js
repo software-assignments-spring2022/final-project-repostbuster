@@ -109,7 +109,6 @@ const SearchSetting = (props) => {
                     <button type="submit">Submit</button>
                 </li>
             </div>
-            {/* <Try /> */}
         </div>
     );
 };
