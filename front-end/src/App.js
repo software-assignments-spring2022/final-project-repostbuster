@@ -1,5 +1,6 @@
-import './App.css';
+import "./App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
 import Header from './components/Header.js'
 import Results from './components/Results.js';
 
@@ -10,6 +11,7 @@ import Technology from './Technology';
 import Home from './components/Home.js';
 import FAQ from './components/FAQ.js';
 
+import SearchSetting from "./searchSetting";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route path="/faq" element={<FAQ />}/>
 
           <Route path="/results" element={<Results />}/>
+          <Route path="/uploadimage" element={<UploadImage />}/>
+          <Route name="searchSetting" path="/searchSetting" element={<SearchSetting />}/>
         </Routes>
       </BrowserRouter>
     </div>
