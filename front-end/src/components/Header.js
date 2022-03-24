@@ -15,7 +15,7 @@ function Header() {
                 <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/home">Home</a></li>
-                    <li><a href="/about-us">About Us</a></li>
+                    <li><a href="/about">About Us</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Help Center<span class="caret"></span></a>
                         <ul class="dropdown-menu">
