@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./uploadImage.css";
 import searchSetting from "./searchSetting.js";
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 
 const data = [
     {
@@ -78,56 +81,42 @@ const NavBar = () => {
 
     return (
         <header className="navbar">
-            {/* <div className="navbar__title navbar__item">Upload Image</div> */}
-            {/* <div className="navbar__item_right">Submit</div> */}
 
-            {/* <form className="navbar__title navbar__item">
-                <input
-                    type="file"
-                    value={imageFile}
-                    onChange={(event) => setImageFile(event.target.files[0])}
-                ></input>
-            </form> */}
-
-            {/* <searchSetting imageName={imageFile[0].name} /> */}
-
-            <input
-                className="navbar__title navbar__item"
-                type="file"
-                onChange={onImageChange}
-            />
+			<div className="navbar__title navbar__item"> Upload Image</div>
 
             {imageURL.map((imageSrc) => (
                 <img src={imageSrc} />
             ))}
 
-            {/* <section> */}
-            {/* {imageFile.map((item) => (
-                    <p> {item.name}</p>
-                ))} */}
-            {/* {imageFile[0].name}
-            </section> */}
+            <a 
+                class="btn btn-primary navbar__item_right" 
+                href="searchSetting" 
+                role="button">
+                    Next
+            </a>
 
-            {/* Click submit --> redirect to searchSetting */}
-            {/* Give the image & file name to searchSetting */}
-            <Link
-                to="/searchSetting"
-                className="navbar__item_right"
-                // state={imageFile[0].name}
-                // query={{ the : imageFile[0].name }}
-            >
-                Submit
-            </Link>
+            <a 
+                class="btn btn-primary navbar__item_left" 
+                href="home" 
+                role="button">
+                    Back
+            </a>
+            {
+            //<Link
+            //    to="/searchSetting"
+            //    className="navbar__item_right"
+            //>
+            //    Next
+            //</Link>
+            
 
-            {/* <button onClick={() => }/> */}
-
-            {/* <div onClick={imageFile[0].name}>Submit</div> */}
-
-            {/* <a className="navbar__item_right" href="/searchSetting">
-                Submit
-            </a> */}
-
-            <div className="navbar__item_left">Back</div>
+			//<Link
+            //    to="/home"
+            //    className="navbar__item_left"
+            //>
+            //    Back
+            //</Link>
+            }
         </header>
     );
 };
@@ -153,9 +142,9 @@ const ImageTiles = (props) => {
 
 const UploadImage = () => {
     return (
-        <div>
+        <div className="homeContent">
             <NavBar />
-            <img src={data[0].image} alt="test" width="500" height="600" />
+            <img src={data[0].image} className="main__image" alt="test" width="500" height="600" />
             <ImageGallery />
         </div>
     );

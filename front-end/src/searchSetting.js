@@ -54,13 +54,36 @@ const SearchSetting = (props) => {
     };
 
     return (
-        // <article >
-        //     <p>Search Settings</p>
-        //     <h1>heading</h1>
-        // </article>
+        <div class="homeContent">
+            <header className="navbar">
 
-        <div className="container">
-            <input accept="image/*" type="file" onChange={updateImage} />
+                <div className="navbar__title navbar__item"> Search Settings</div>
+
+                {/* <section> */}
+                {/* {imageFile.map((item) => (
+                        <p> {item.name}</p>
+                    ))} */}
+                {/* {imageFile[0].name}
+                </section> */}
+
+                {/* Click submit --> redirect to searchSetting */}
+                {/* Give the image & file name to searchSetting */}
+                <a 
+                    class="btn btn-primary navbar__item_right" 
+                    href="results" 
+                    role="button">
+                        Submit
+                </a>
+
+            <a 
+                class="btn btn-primary navbar__item_left" 
+                href="uploadImage" 
+                role="button">
+                    Back
+            </a>
+            </header>
+
+            <div className="container">
 
             {image && (
                 <div className="preview">
@@ -75,41 +98,43 @@ const SearchSetting = (props) => {
                 </div>
             )}
             <DatePicker />
-            <div>
-                {/* <label>
-                    <input
-                        type="checkbox"
-                        checked={checked}
-                        onChange={handleCheck}
-                    />
-                    My Value
-                    <p>is "My Value" checked? {checked.toString()}</p>
-                </label> */}
-                <li className="checkOption">
-                    <Checkbox
-                        label="Select One"
-                        value={checkedOne}
-                        onChange={handleCheckOne}
-                    />
-                    <Checkbox
-                        label="Select Two"
-                        value={checkedTwo}
-                        onChange={handleCheckTwo}
-                    />
-                    <Checkbox
-                        label="Select Three"
-                        value={checkedThree}
-                        onChange={handleCheckThree}
-                    />
-                    <Checkbox
-                        label="Select Four"
-                        value={checkedFour}
-                        onChange={handleCheckFour}
-                    />
-                    <button type="submit">Submit</button>
-                </li>
+                <div>
+                    {/* <label>
+                        <input
+                            type="checkbox"
+                            checked={checked}
+                            onChange={handleCheck}
+                        />
+                        My Value
+                        <p>is "My Value" checked? {checked.toString()}</p>
+                    </label> */}
+                    <li className="checkOption">
+                        <Checkbox
+                            label="Select One"
+                            value={checkedOne}
+                            onChange={handleCheckOne}
+                        />
+                        <Checkbox
+                            label="Select Two"
+                            value={checkedTwo}
+                            onChange={handleCheckTwo}
+                        />
+                        <Checkbox
+                            label="Select Three"
+                            value={checkedThree}
+                            onChange={handleCheckThree}
+                        />
+                        <Checkbox
+                            label="Select Four"
+                            value={checkedFour}
+                            onChange={handleCheckFour}
+                        />
+                        <button type="submit">Submit</button>
+                    </li>
+                </div>
             </div>
         </div>
+        
     );
 };
 

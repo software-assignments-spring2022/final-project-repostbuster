@@ -1,10 +1,9 @@
-import React, { useRef } from 'react';
+import React, {useRef} from 'react';
 import './Home.css';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 //import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 
 const  Home = props => {
@@ -19,7 +18,9 @@ const  Home = props => {
     // Function to handle the user selected file
     const handleChange = event => {
         const fileUploaded = event.target.files[0];
-        props.handleFile(fileUploaded);
+        //props.handleFile(fileUploaded);
+
+        
     };
 
     return (
@@ -31,7 +32,7 @@ const  Home = props => {
                     onChange={handleChange}
                     style={{display: 'none'}}
                 />
-                <Button variant="primary" size="lg" onClick={handleClick}>
+                <Button href= "uploadImage" variant="primary" size="lg" onClick={handleClick}>
                     Upload an Image
                 </Button>
             </div>
@@ -48,9 +49,6 @@ const  Home = props => {
                 Search
                 </Button>
             </InputGroup>
-            
-            
-                
 
                 
         </div>
