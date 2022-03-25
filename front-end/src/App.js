@@ -12,6 +12,7 @@ import Home from './components/Home.js';
 import FAQ from './components/FAQ.js';
 
 import SearchSetting from "./searchSetting";
+import HowItWorks from "./HowItWorks";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/results" element={<Results />}/>
           <Route path="/uploadimage" element={<UploadImage />}/>
           <Route name="searchSetting" path="/searchSetting" element={<SearchSetting />}/>
+          <Route name="howItWorks" path="/HowItWorks" element={<HowItWorks />}/>
         </Routes>
       </BrowserRouter>
     </div>

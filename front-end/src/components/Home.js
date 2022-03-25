@@ -25,6 +25,16 @@ const  Home = props => {
 
     return (
         <div className="homeContent">
+            <div>
+                <h1>Reverse Image Search</h1>
+                <p> A tool that uses pictures to find pictures on the internet</p>
+                <p></p>
+                <Button variant="secondary" size="lg" href= "HowItWorks"> 
+                    Learn how it works!
+                </Button>
+            </div>
+            <div></div>
+
             <div id="ImageUploadButton">
                 <input
                     type="file"
@@ -32,7 +42,7 @@ const  Home = props => {
                     onChange={handleChange}
                     style={{display: 'none'}}
                 />
-                <Button href= "uploadImage" variant="primary" size="lg" onClick={handleClick}>
+                <Button class="uploadImageBtn" href= "uploadImage" variant="primary" size="lg" onClick={handleClick}>
                     Upload an Image
                 </Button>
             </div>

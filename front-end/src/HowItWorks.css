@@ -1,26 +1,10 @@
-.homeContent{
+.content-wrapper{
     /*background-color: red;*/
     margin: 0 10vw;
 }
 
-#ImageUploadButton a{
-    width: 100%;
-}
-
-.homeContent div{
-    padding: 10px 0;
-}
-
-.mb-3{
-    /*background-color: green;*/
-    width: 100%;
-    display: flex;
-}
-
-
-/* Desktop Styling */
 @media (min-aspect-ratio: 1/2){
-    .homeContent{
+    .content-wrapper{
         /*background-color: yellow;*/
         display: block;
         margin-left: auto;
@@ -28,3 +12,5 @@
         width: 500px;
     }
 }
+
+
