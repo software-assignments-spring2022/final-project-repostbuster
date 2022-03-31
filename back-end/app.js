@@ -25,3 +25,17 @@ app.get("/", (req, res) => {
 
 // export the express app we created to make it available to other modules
 module.exports = app; // CommonJS export style!
+
+// Dont forget to create unit tests for your respective functions!
+
+// Reverse Image Search API is called once user clicks the submit button on the Search Settings Page.
+// Camilo Villavicencio
+
+// Backend to do the Image I/O on the home page
+// Hyujun Choi
+
+// Use Express to store the Image Search results
+// Riley Valls
+
+// Use Express to store user login credentials and preffered search settings for their profile
+// Duardo Akerele
