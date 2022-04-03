@@ -15,13 +15,13 @@ function Header() {
                 <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/home">Home</a></li>
-                    <li><a href="/about-us">About Us</a></li>
+                    <li><a href="/about">About Us</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Help Center<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/faq">FAQs</a></li>
                             <li><a href="/contact">Contact</a></li>
-                            <li><a href="/how-it-works">How it Works</a></li>
+                            <li><a href="/howItWorks">How it Works</a></li>
                         </ul>
                         </li>
                     <li><a href="/our-tech">Our Technology</a></li>
