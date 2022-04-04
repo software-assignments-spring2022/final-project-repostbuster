@@ -19,6 +19,9 @@ app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming 
 // make 'public' directory publicly readable with static content
 app.use("/static", express.static("public"));
 
+const cors = require('cors')
+app.use(cors())
+
 app.get("/", (req, res) => {
     res.send("Welcome to RepostBuster!");
 });
@@ -36,6 +39,31 @@ module.exports = app; // CommonJS export style!
 
 // Use Express to store the Image Search results
 // Riley Valls
+app.get("/results", (req, res) => {
+    const body = [
+        {
+        "source": "Holdlamis",
+        "date": "05/15/2021",
+        "link": "ucoz.com"
+      }, {
+        "source": "Namfix",
+        "date": "03/22/2021",
+        "link": "patch.com"
+      }, {
+        "source": "Alphazap",
+        "date": "01/21/2022",
+        "link": "soup.io"
+      }, {
+        "source": "Namfix",
+        "date": "02/16/2022",
+        "link": "feedburner.com"
+      }
+    ];
+    // send the response as JSON text to the client
+    
+    res.json(body)
+});
+
 
 // Use Express to store user login credentials and preffered search settings for their profile
 // Duardo Akerele

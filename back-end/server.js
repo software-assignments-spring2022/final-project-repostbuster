@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 
 // which port to listen for HTTP(S) requests
-const port = 3000;
+const port = 8000;
 
 app.use(express.static("front-end\\public"));
 app.listen(port, () => {
