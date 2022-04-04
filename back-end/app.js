@@ -26,8 +26,7 @@ app.get("/", (req, res) => {
     res.send("Welcome to RepostBuster!");
 });
 
-// export the express app we created to make it available to other modules
-module.exports = app; // CommonJS export style!
+
 
 // Dont forget to create unit tests for your respective functions!
 
@@ -67,3 +66,7 @@ app.get("/results", (req, res) => {
 
 // Use Express to store user login credentials and preffered search settings for their profile
 // Duardo Akerele
+
+
+// export the express app we created to make it available to other modules
+module.exports = app; // CommonJS export style!
