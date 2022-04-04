@@ -8,7 +8,7 @@ import axios from 'axios';
 
 function Results() {
 
-    fetch('http://localhost:8000/results/')
+    fetch('http://localhost:3000/results/')
     .then(response => response.json())
     .then(function (result) {
         for (var i = 0; i < result.length; i++) {
@@ -21,7 +21,7 @@ function Results() {
     const [error, setError] = useState('');
 
     useEffect(() => {
-      fetch('http://localhost:8000/results/')
+      fetch('http://localhost:3000/results/')
         .then((response) => {
           if (response.ok) return response.json();
           throw new Error('something went wrong while requesting posts');
