@@ -1,4 +1,13 @@
 import "./Technology.css"
+import styled from 'styled-components';
+
+const section = styled.button`
+
+    margin:auto;
+    width:40%;
+
+`
+
 
 const Technology = () => {
     return (
@@ -38,8 +47,26 @@ const Technology = () => {
                     metadata, PSE metadata, and the actual search results.
                 </p>
             </section>
-        </div>
-    );
-}
 
+        </div>
+
+    );
+
+}
+const ShreyHead = () => {
+    return (
+      <style>
+      .content-wrapper{
+          margin:auto;
+          width:40%;
+
+      }
+      </style>
+    )
+  }
+// const boxes = document.querySelectorAll('.content-wrapper');
+//
+// boxes.forEach(box => {
+//   box.style.backgroundColor = 'blue';
+// });
 export default Technology;

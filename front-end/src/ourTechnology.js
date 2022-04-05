@@ -1,4 +1,9 @@
 import "./ourTechnology.css"
+:global {
+  .aligncenter {
+    text-align: center;
+  }
+}
 
 const ourTechnology = () => {
     return (
