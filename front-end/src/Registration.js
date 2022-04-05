@@ -2,7 +2,7 @@ import "./styles.css";
 
 const Registration = () =>{
     return (
-        <div className="formContainer">
+        <div className="content-wrapper">
             <form  action="/register" method="POST">
                 <div class="form-outline mb-4">
                     <input type="text" id="registerName" class="form-control" />
