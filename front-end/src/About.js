@@ -7,9 +7,7 @@ const About = () => {
         <section>
             <h1>What is RepoBuster?</h1>
             <p>An easy to use web-app tool that parses the internet for reposted instances of user input images and returns the relevant results to the user.</p>
-            <script>
-            document.getElementById("p").style.color = "blue";
-            </script>
+
         </section>
 
         <section>
@@ -43,6 +41,7 @@ const About = () => {
         </section>
 
       </div>
+
     );
   }
 

@@ -1,9 +1,5 @@
-import "./ourTechnology.css"
-:global {
-  .aligncenter {
-    text-align: center;
-  }
-}
+import "./styles.css"
+
 
 const ourTechnology = () => {
     return (
