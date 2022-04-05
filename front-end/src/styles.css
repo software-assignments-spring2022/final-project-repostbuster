@@ -136,3 +136,10 @@
     display: inline-block;
     vertical-align: middle; */
 }
+
+/*Registration*/
+.formContainer{
+    width:25%;
+    margin:auto;
+
+}
