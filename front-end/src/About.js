@@ -1,8 +1,8 @@
-import "./About.css"
+import "./styles.css"
 
 const About = () => {
     return (
-      <div class="content-wrapper">
+      <div class="homeContent">
 
         <section>
             <h1>What is RepoBuster?</h1>
