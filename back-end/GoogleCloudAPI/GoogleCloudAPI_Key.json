@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "genuine-ether-297623",
+  "private_key_id": "9cbabf710af3326caeb0a7145659eb506a565409",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCw1Nzc8OlPF4/V\nwJNccIQ+qAhqR74X2axpb7BlJMa4gwL3L46K6fNfolbDCExH4ZZ5JJp0xUJ+p/NJ\n+6yVQJzNsPi8frddaLU/4W63O7PlZ7aIDfBfXculEemd1cZppDucuwuz5zgLCy9n\nqnxnsD1cXKa+rqjlgixEBolQQcAb+ZsWvbxrkz2Sot+9y0Fi3nPsXdnO9BnQu3/w\n8L0Qfts/ir6cCjuM5gqFDV6IRx4bqR/Ha3bxIYEGGfrGq2yQMVbDDZ267d+VG6tP\nssFgzf1cZlrNip2nQi3voKfTQBCCss3+Gjiy2ulTRjXBcpiitoC4BX7mVnbYYGGs\nzEv8R38zAgMBAAECggEAAJinKgOR9ddRf9oHZS9n8sIkTR9yz6fHQg/DW4P1O5gN\ngYHijCtfy7nDayLzBucG19+8uZoUsFKmqmAz48j0/miTXidbPPBmdBGxiuKjp6li\n3zCU1+18C1F1JTgcVCzempey4WdtM/RUs5fKlZrtigsx8MCsByIaPhx7iA7AtBdw\n8/FB/gPC6c/VbRl0LHfj7hAQLBTgwv3lp3Ng+5hrP1ekM6sGvIS7bWjm9Ng5QOXr\n28Spb1v1RjTp/g3ZW8ygmEEH3qL3x8NVqNOcNWDmyHZMCLiSfTW2eCJfTrFH8SFG\ndD3E/nDsWu2gXrfNRezGKxmQPZdz3cJa72PthQhPIQKBgQDa7j840p3VEBT9hzmv\noqhQVrU4mlnnpWAYrhSRg2fewjEChzOfjbZ3N3sakFW9oZOcSP4a5oOzqknkddIk\nbErFjy6bva1LDOB7ClRVyYSkKJpkJb/achKOfLlA7fyYaMUojJeLAvlLfs9qSPJ2\nPsVqWx+8YdEFsIjxpO3TYRtG0QKBgQDOxcniRK7Uu5uCJVUEhQ9zkQiAmnsZ/pNq\nVVsWuvWTWrpoUfe7zNVJALyzdye05ZwqqK8mu2RO58H0wo2Cd1HW16KhEkqFyPeD\nfKiD7glzbHbT4iqp+eARJXoA4kPkgxary5q7V/DpS8wrN27E4P24rktNV7M/Ga8/\nrIQ48RcuwwKBgQDJS7nxoyXf23ORUJ5nsSUVCUSDENiNNu9OgfEDglEk7mRlsK50\ni7Yzk12rJP7Q5xlz32FUlpKNxYs/dl2Lg86UK3xtUk9d7C8SsoKshidhULv0TQlD\n7xLE1ET5QFi6QcrV578G3+sb0TMgxIW61yhpC/P4H/AyTQj9Neo+KtELoQKBgHEo\nuVWFNRDjIzXUbHSuxUf/xWFsKZaORerZj6Ie6yqbaoyQ3zz92nO7XYnx2d8cEZ0e\n98wAneK43uKuXndaCYXEORJhSjtxQlPJMwgQi0eJwnYuvh6Ly15W3jABpBo4y311\nTdbdR9DFVJUKHyrL3s7lQ/yt1EDiM5BrP2lSN9e1AoGBAMzDl7isyO7YT968mJRc\n1vSBWHsVEO+b3UnkfpXYBgUt2WpnLnSwdtbV/TZEz1Nmdl08ZBa0vOgt9b/+0tPX\nkC3qkoP0z7lr63E9xgScHYIMAvhAd7MrjFLwwgDXZepd7QZmNteUOC0wMJtfErx9\nrjG5A3SrbY+AtlrmaKMuVm7B\n-----END PRIVATE KEY-----\n",
+  "client_email": "repostbuster-serviceaccount@genuine-ether-297623.iam.gserviceaccount.com",
+  "client_id": "115626858520512914663",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/repostbuster-serviceaccount%40genuine-ether-297623.iam.gserviceaccount.com"
+}

@@ -1,19 +1,50 @@
 # Project Repository
 
-This repository will be used for team projects.
+## RepostBuster
 
-Several sets of instructions are included in this repository. They should each be treated as separate assignments with their own due dates and sets of requirements.
+An easy to use web-app tool that parses the internet for reposted instances of user input images and returns the relevant results to the user.
 
-1. See the [App Map & Wireframes](instructions-0a-app-map-wireframes.md) and [Prototyping](./instructions-0b-prototyping.md) instructions for the requirements of the initial user experience design of the app.
+## Vision Statement
 
-1. Delete the contents of this file and replace with the contents of a proper README.md, as described in the [project setup instructions](./instructions-0c-project-setup.md)
+The current vision for the project is to create a web app that allows users to perform a reverse image search of an image of their choosing, and recieve a returned list of any relevant instances of the image that have been reuploaded onto the internet.
 
-1. See the [Sprint Planning instructions](instructions-0d-sprint-planning.md) for the requirements of Sprint Planning for each Sprint.
+### What is a "reverse image search?"
 
-1. See the [Front-End Development instructions](./instructions-1-front-end.md) for the requirements of the initial Front-End Development.
+A **Reverse Image Search** is a search engine technology that takes an image file as an input and returns results related to the image.
 
-1. See the [Back-End Development instructions](./instructions-2-back-end.md) for the requirements of the initial Back-End Development.
+That means that instead of using a word, term, phrase, or sentence when performing an online search, you can use a picture instead!
 
-1. See the [Database Integration instructions](./instructions-3-database.md) for the requirements of integrating a database into the back-end.
+### Examples of Reverse Image Search Engines
 
-1. See the [Deployment instructions](./instructions-4-deployment.md) for the requirements of deploying an app.
+-   [Google Images](https://www.google.com/imghp?hl=en)
+    -   [How to search with an image on Google](https://support.google.com/websearch/answer/1325808?hl=en&co=GENIE.Platform%3DDesktop)
+-   [TinEye](https://tineye.com/)
+
+## Team Members
+
+Use the following format:
+Name - [GitHub Username](Link to personal GitHub)
+
+-   Camilo Villavicencio - [camilohv](https://github.com/camilohv)
+-   Hyunjun Choi - [hunjunChoi](https://github.com/hunjunChoi)
+-   Riley Valls - [rileyv327](https://github.com/rileyv327)
+-   Shery Mittal - [shrey-mittall](https://github.com/shrey-mittall)
+-   Duardo Akerele - [DAkerele](https://github.com/DAkerele)
+
+## Project history
+
+The concept was originally inspired by a problem prevalent in online art communities: **art theft**.
+
+There are countless instances of people reuploading images without sourcing the author, unrightfully using images for commercial use, or pladgiarism of other peoples work.
+
+There are barely any tools available to combat this issue. The ones that are currently available are cumbersome and tedious to use. Because of this, we are creating **an easy to use web-app tool that parses the internet for reposted instances of user input images, and returns the relevant results to the user.**
+
+The concept was originally proposed by Camilo Villavicencio, and is currently being developed and refined with Riley Valls, Hyunjun Choi, and Shery Mittal.
+
+## Instructions
+
+To be added later...
+
+## Additional Documents
+
+To be added later...

@@ -1,0 +1,69 @@
+.container {
+    /* display: "flex";
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50; */
+}
+
+.preview {
+    margin-top: 50;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.image {
+    /* max-width: "100%";
+    max-height: 320;
+    position: absolute;
+    top: 0px;
+    left: 0px; */
+    float: left;
+    width: 300px;
+    height: auto;
+    border: 3px solid #73ad21;
+    padding: 10px;
+    display: block;
+}
+
+.delete {
+    cursor: pointer;
+    padding: 15;
+    background: red;
+    color: white;
+    border: none;
+    /* float: right; */
+    display: flex;
+    text-align: center;
+}
+
+.checkOption {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+
+    /* width: 200px;
+
+    position: relative;
+    left: -20px;
+
+    display: inline-block;
+    vertical-align: middle; */
+}
+
+.homeContent{
+    /*background-color: red;*/
+    margin: 0 10vw;
+}
+
+/* Desktop Styling */
+@media (min-aspect-ratio: 1/2){
+    .homeContent{
+        /*background-color: yellow;*/
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px;
+    }
+}
