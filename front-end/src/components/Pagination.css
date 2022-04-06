@@ -42,6 +42,7 @@
   pointer-events: none;
 }
 
+.paginationItem.disabled,
 .prev.disabled,
 .next.disabled {
   pointer-events: none;

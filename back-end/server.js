@@ -1,12 +1,21 @@
 #!/usr/bin/env node
 
 // import the express app
-const express = require("express");
-const app = express();
+const server = require("./app")
+//const express = require("express");
+//const app = express();
 
 // which port to listen for HTTP(S) requests
 const port = 3000;
 
+const listener = server.listen(port, function () {
+    console.log(`Server running on port ${port}`);
+});
+
+const close = () => {
+    listener.close();
+}
+/*
 app.use(express.static("front-end\\public"));
 app.listen(port, () => {
     console.log("listening on "+port);
@@ -29,5 +38,9 @@ app.post('/login', (req, res) => {
 
     //if match return success page
 });
+*/
+module.exports = {
+    close: close,
+}
 // export the close function
-module.exports = app;
+//module.exports = app;

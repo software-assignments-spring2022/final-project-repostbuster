@@ -59,9 +59,9 @@ function Pagination ({ data, RenderComponent, title, pageLimit, dataLimit }) {
                 <button
                 key={index}
                 onClick={changePage}
-                className={`paginationItem ${currentPage === item ? 'active' : null}`}
+                className={`paginationItem ${currentPage === item ? 'active' : null} ${item > pages ? 'disabled' : ''}`}
                 >
-                    {index+1}
+                    <p>{item}</p>
                 </button>
             ))}
 
