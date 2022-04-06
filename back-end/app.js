@@ -9,6 +9,7 @@ const axios = require("axios"); // middleware for making requests to APIs
 require("dotenv").config({ silent: true }); // load environmental variables from a hidden file named .env
 const morgan = require("morgan"); // middleware for nice logging of incoming HTTP requests
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 // use the morgan middleware to log all incoming http requests
 app.use(morgan("dev", { skip: (req, res) => process.env.NODE_ENV === "test" })); // log all incoming requests, except when in unit test mode.
@@ -20,12 +21,20 @@ app.use(express.urlencoded({ extended: false })); // decode url-encoded incoming
 
 // make 'public' directory publicly readable with static content
 const publicPath = path.join(__dirname, "public"); // instead of app.use("/static", express.static("public"));
-app.use(express.static(publicPath));
+// app.use(express.static(publicPath));
 
 // reference to upload images
-// app.use("/uploadImage", express.static("/public/images"));
+// app.use("/image-upload", express.static("/public/"));
 
-app.use(cors());
+const corsOrigin = "http://localhost:4000";
+
+app.use(
+    cors({
+        origin: [corsOrigin],
+        methods: ["GET", "POST"],
+        credentials: true,
+    })
+);
 
 app.get("/", (req, res) => {
     res.send("Welcome to RepostBuster!");
@@ -38,17 +47,17 @@ app.get("/", (req, res) => {
 
 // Backend to do the Image I/O on the home page
 // Hyujun Choi
-app.get("/public/:imageName", (req, res) => {
+/* app.get("/public/:imageName", (req, res) => {
     const imageName = req.params.imageName;
     const readStream = fs.createReadStream(`public/${imageName}`);
     readStream.pipe(res);
-});
+}); */
 
 // enable file uploads saved to disk in a directory named "public"
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         // default root folder of the app
-        cb(null, "/public"); // OR /public/images
+        cb(null, "public/"); // OR /public/images
     },
     filename: function (req, file, cb) {
         // take apart the uploaded file's name... create a new one based on it
@@ -69,7 +78,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 // .single("image"); // Same "image" as data.append("image", event.target.files[0]);
 
-app.post("/home", upload.single("image"), (req, res) => {
+app.post("/image-upload", upload.array("image"), (req, res) => {
     /* -------------------------------------------- Attempt 1
     upload(req, res, (err) => {
         // upload() handles req & res
@@ -77,13 +86,19 @@ app.post("/home", upload.single("image"), (req, res) => {
             res.status(500).send("Upload ERROR!!!!!!"); // Error handling
         }
         res.send(req.file);
-    }); */
-
-    const imagePath = req.file.buffer.path;
+    });
+     */
+    /*  ---------------------------------------------------- attempt 2
+    const imagePath = req.file.path;
     const description = req.body.description;
 
     console.log(imagePath, description);
-    res.send({ imagePath, description });
+    res.send({ imagePath, description }); 
+    */
+
+    console.log("POST request received to /public");
+    console.log("Axios POST body: ", req.body);
+    res.send("POST request received on server");
 });
 
 // Use Express to store the Image Search results

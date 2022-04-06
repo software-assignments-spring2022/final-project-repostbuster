@@ -20,11 +20,27 @@ const Home = (props) => {
         //props.handleFile(fileUploaded);
     }; */
 
-    const [images, setImage] = useState();
-    const [error, setError] = useState("");
+    const [image, setImage] = useState(null);
+    /* const [error, setError] = useState("");
     const [loaded, setLoad] = useState(false);
     const [description, setDescription] = useState("");
-    const [file, setFile] = useState();
+    const [file, setFile] = useState(); */
+
+    const handleClick = () => {
+        axios.post("http://localhost:3000/image-upload", image).then((res) => {
+            console.log("Axios response ", res);
+        });
+    };
+
+    const handleFileInput = (e) => {
+        console.log("handleFileInput working");
+        console.log(e.target.files[0]);
+
+        const formData = new FormData();
+
+        formData.append("image", e.target.files[0], e.target.files[0].name);
+        setImage(formData);
+    };
 
     /*  -------------------------------------------------- Attempt 2
      // function to handle the selected file
@@ -118,7 +134,9 @@ const Home = (props) => {
                     Upload an Image
                 </Button> */}
                 {/* -------------------------------------------------------- end button */}
-                <form onSubmit={uploadHandler}>
+
+                {/* -------------------------------------------------------- attempt 2 */}
+                {/* <form onSubmit={uploadHandler}>
                     <input
                         filename={file}
                         onChange={(e) => setFile(e.target.files[0])} // store file with useState
@@ -128,11 +146,15 @@ const Home = (props) => {
                     <input
                         onChange={(event) => setDescription(event.target.value)}
                         type="text"
-                    ></input>
-                    {/* <input type="submit" value="Save" /> */}
-                    <button type="submit">Upload an image</button>
+                    ></input> */}
+                {/* <input type="submit" value="Save" /> */}
+                {/* <button type="submit">Upload an image</button>
                 </form>
-                {images && <img src={images} />}
+                {images && <img src={images} />} */}
+                {/* -------------------------------------------------------- end attempt 2 */}
+
+                <button onClick={handleClick}>Upload!</button>
+                <input type="file" onChange={handleFileInput} />
             </div>
 
             <InputGroup className="mb-3">
