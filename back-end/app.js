@@ -22,6 +22,9 @@ app.use(express.urlencoded({ extended: false })); // decode url-encoded incoming
 const publicPath = path.join(__dirname, "public"); // instead of app.use("/static", express.static("public"));
 app.use(express.static(publicPath));
 
+// reference to upload images
+// app.use("/uploadImage", express.static("/public/images"));
+
 app.use(cors());
 
 app.get("/", (req, res) => {
@@ -35,6 +38,53 @@ app.get("/", (req, res) => {
 
 // Backend to do the Image I/O on the home page
 // Hyujun Choi
+app.get("/public/:imageName", (req, res) => {
+    const imageName = req.params.imageName;
+    const readStream = fs.createReadStream(`public/${imageName}`);
+    readStream.pipe(res);
+});
+
+// enable file uploads saved to disk in a directory named "public"
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        // default root folder of the app
+        cb(null, "/public"); // OR /public/images
+    },
+    filename: function (req, file, cb) {
+        // take apart the uploaded file's name... create a new one based on it
+        const extension = path.extname(file.originalname); // return extension of path.... from last '.' to end
+        const basenameWithoutExtension = path.basename(
+            file.originalname,
+            extension
+        ); // extracts filename from fully qualified path... 2nd arg --> extension to remove from result
+
+        // create a new file name with a timestamp in the middle
+        const newName = `${basenameWithoutExtension}-${Date.now()}${extension}`;
+
+        // multer uses new filename for the uploaded file
+        cb(null, newName);
+    },
+});
+
+const upload = multer({ storage: storage });
+// .single("image"); // Same "image" as data.append("image", event.target.files[0]);
+
+app.post("/home", upload.single("image"), (req, res) => {
+    /* -------------------------------------------- Attempt 1
+    upload(req, res, (err) => {
+        // upload() handles req & res
+        if (err) {
+            res.status(500).send("Upload ERROR!!!!!!"); // Error handling
+        }
+        res.send(req.file);
+    }); */
+
+    const imagePath = req.file.buffer.path;
+    const description = req.body.description;
+
+    console.log(imagePath, description);
+    res.send({ imagePath, description });
+});
 
 // Use Express to store the Image Search results
 // Riley Valls
