@@ -3,10 +3,15 @@ import './Home.css';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
+//import vision from 'google-cloud/vision';
+
+//import { detectWeb } from "./APITest2.js";
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+
 const  Home = props => {
+    
 
     // Reference to original input element
     const hiddenFileInput = React.useRef(null);
@@ -18,9 +23,11 @@ const  Home = props => {
     // Function to handle the user selected file
     const handleChange = event => {
         const fileUploaded = event.target.files[0];
+
+        //console.log(fileUploaded);
+        //detectWeb("test");
         //props.handleFile(fileUploaded);
 
-        
     };
 
     return (
@@ -33,7 +40,17 @@ const  Home = props => {
                     Learn how it works!
                 </Button>
             </div>
-            <div></div>
+
+            <form action="/" method="POST">
+                <input type="text" name="your_name" placeholder="Your name" /> <br />
+                <input type="text" name="your_email" placeholder="Your email" /> <br />
+                <input type="checkbox" name="agree" /><label
+                    >I agree to your onerous conditions</label
+                >
+                <br />
+                <input type="submit" value="Submit!!!" />
+            </form>
+                        
 
             <div id="ImageUploadButton">
                 <input
@@ -42,7 +59,7 @@ const  Home = props => {
                     onChange={handleChange}
                     style={{display: 'none'}}
                 />
-                <Button class="uploadImageBtn" href= "uploadImage" variant="primary" size="lg" onClick={handleClick}>
+                <Button class="uploadImageBtn" variant="primary" size="lg" onClick={handleClick}>
                     Upload an Image
                 </Button>
             </div>

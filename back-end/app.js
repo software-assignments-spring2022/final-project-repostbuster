@@ -19,9 +19,11 @@ app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming 
 // make 'public' directory publicly readable with static content
 app.use("/static", express.static("public"));
 
-app.get("/", (req, res) => {
+
+app.get("/home", (req, res) => {
     res.send("Welcome to RepostBuster!");
 });
+
 
 // export the express app we created to make it available to other modules
 module.exports = app; // CommonJS export style!
@@ -30,6 +32,16 @@ module.exports = app; // CommonJS export style!
 
 // Reverse Image Search API is called once user clicks the submit button on the Search Settings Page.
 // Camilo Villavicencio
+
+// route for HTTP POST requests for /upload-example
+app.post("/", (req, res) => {
+  const name = req.body.your_name
+  const email = req.body.your_email
+  const agree = req.body.agree
+  // now do something amazing with this data...
+  // ... then send a response of some kind
+})
+
 
 // Backend to do the Image I/O on the home page
 // Hyujun Choi

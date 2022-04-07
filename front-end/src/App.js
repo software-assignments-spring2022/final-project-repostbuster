@@ -14,6 +14,8 @@ import FAQ from './components/FAQ.js';
 import SearchSetting from "./searchSetting";
 import HowItWorks from "./HowItWorks";
 
+import UploadExample from "./upload-example.js";
+
 function App() {
   return (
     <div>
@@ -32,6 +34,7 @@ function App() {
           <Route path="/uploadimage" element={<UploadImage />}/>
           <Route name="searchSetting" path="/searchSetting" element={<SearchSetting />}/>
           <Route name="howItWorks" path="/HowItWorks" element={<HowItWorks />}/>
+          <Route path="/upload-example" element={<UploadExample />}/>
         </Routes>
       </BrowserRouter>
     </div>
