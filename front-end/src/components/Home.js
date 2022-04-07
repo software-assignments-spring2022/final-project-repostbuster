@@ -113,6 +113,16 @@ const Home = (props) => {
                     onChange={handleChange} // File Explorer pops up
                     style={{ display: "none" }}
                 /> */}
+
+                {/* <Button
+                    class="uploadImageBtn"
+                    href="uploadImage"
+                    variant="primary"
+                    size="lg"
+                    // onClick={handleClick} // to /uploadImage
+                >
+                    Upload an Image
+                </Button> */}
                 {/* ----------------------------------------------------------End Riley */}
 
                 {/* --------------------------------------------------------button  */}
@@ -124,15 +134,6 @@ const Home = (props) => {
                     <img src={`http://localhost:3000/${img.filename}`} />
                 ))} */}
 
-                {/* <Button
-                    class="uploadImageBtn"
-                    href="uploadImage"
-                    variant="primary"
-                    size="lg"
-                    // onClick={handleClick} // to /uploadImage
-                >
-                    Upload an Image
-                </Button> */}
                 {/* -------------------------------------------------------- end button */}
 
                 {/* -------------------------------------------------------- attempt 2 */}
@@ -153,7 +154,9 @@ const Home = (props) => {
                 {images && <img src={images} />} */}
                 {/* -------------------------------------------------------- end attempt 2 */}
 
-                <button onClick={handleClick}>Upload!</button>
+                <Button href="uploadImage" onClick={handleClick}>
+                    Upload!
+                </Button>
                 <input type="file" onChange={handleFileInput} />
             </div>
 
