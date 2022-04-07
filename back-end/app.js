@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false })); // decode url-encoded incoming
 
 // make 'public' directory publicly readable with static content
 const publicPath = path.join(__dirname, "public"); // instead of app.use("/static", express.static("public"));
-// app.use(express.static(publicPath));
+app.use(express.static(publicPath));
 
 // reference to upload images
 // app.use("/image-upload", express.static("/public/"));

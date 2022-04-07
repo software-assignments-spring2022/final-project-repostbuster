@@ -154,9 +154,7 @@ const Home = (props) => {
                 {images && <img src={images} />} */}
                 {/* -------------------------------------------------------- end attempt 2 */}
 
-                <Button href="uploadImage" onClick={handleClick}>
-                    Upload!
-                </Button>
+                <button onClick={handleClick}>Upload!</button>
                 <input type="file" onChange={handleFileInput} />
             </div>
 

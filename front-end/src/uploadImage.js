@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./uploadImage.css";
 import searchSetting from "./searchSetting.js";
-import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
+import Button from "react-bootstrap/Button";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
 
 const data = [
     {
@@ -81,42 +81,27 @@ const NavBar = () => {
 
     return (
         <header className="navbar">
+            <div className="navbar__title navbar__item"> Upload Image</div>
 
-			<div className="navbar__title navbar__item"> Upload Image</div>
+            <a
+                class="btn btn-primary navbar__item_right"
+                href="searchSetting"
+                role="button"
+            >
+                Next
+            </a>
+
+            <a
+                class="btn btn-primary navbar__item_left"
+                href="home"
+                role="button"
+            >
+                Back
+            </a>
 
             {imageURL.map((imageSrc) => (
                 <img src={imageSrc} />
             ))}
-
-            <a 
-                class="btn btn-primary navbar__item_right" 
-                href="searchSetting" 
-                role="button">
-                    Next
-            </a>
-
-            <a 
-                class="btn btn-primary navbar__item_left" 
-                href="home" 
-                role="button">
-                    Back
-            </a>
-            {
-            //<Link
-            //    to="/searchSetting"
-            //    className="navbar__item_right"
-            //>
-            //    Next
-            //</Link>
-            
-
-			//<Link
-            //    to="/home"
-            //    className="navbar__item_left"
-            //>
-            //    Back
-            //</Link>
-            }
         </header>
     );
 };
@@ -140,11 +125,18 @@ const ImageTiles = (props) => {
     );
 };
 
+// Main image display
 const UploadImage = () => {
     return (
         <div className="homeContent">
             <NavBar />
-            <img src={data[0].image} className="main__image" alt="test" width="500" height="600" />
+            <img
+                src={data[0].image}
+                className="main__image"
+                alt="test"
+                width="500"
+                height="600"
+            />
             <ImageGallery />
         </div>
     );
