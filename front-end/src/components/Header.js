@@ -25,6 +25,8 @@ function Header() {
                         </ul>
                         </li>
                     <li><a href="/our-tech">Our Technology</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
                 </ul>
                 </div>
             </div>
