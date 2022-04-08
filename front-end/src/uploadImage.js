@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./uploadImage.css";
+import "./styles.css";
 import searchSetting from "./searchSetting.js";
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -88,16 +88,16 @@ const NavBar = () => {
                 <img src={imageSrc} />
             ))}
 
-            <a 
-                class="btn btn-primary navbar__item_right" 
-                href="searchSetting" 
+            <a
+                class="btn btn-primary navbar__item_right"
+                href="searchSetting"
                 role="button">
                     Next
             </a>
 
-            <a 
-                class="btn btn-primary navbar__item_left" 
-                href="home" 
+            <a
+                class="btn btn-primary navbar__item_left"
+                href="home"
                 role="button">
                     Back
             </a>
@@ -108,7 +108,7 @@ const NavBar = () => {
             //>
             //    Next
             //</Link>
-            
+
 
 			//<Link
             //    to="/home"

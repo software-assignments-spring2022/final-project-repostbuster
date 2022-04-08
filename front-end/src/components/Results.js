@@ -3,13 +3,45 @@ import "./Results.css";
 import { LoremPicsum } from "react-lorem-picsum";
 import Pagination from "./Pagination";
 import Result from "./Result";
+import Download from "./Download";
+import axios from 'axios';
+
 
 function Results() {
-    
 
-    // fetch random results (limit of 200 requests per day so don't leave this code on...)
+    fetch('http://localhost:3000/results')
+    .then(response => response.json())
+    .then(function (result) {
+        // remove prev items
+        results = []
+
+        // add new items
+        for (var i = 0; i < result.length; i++) {
+          results.push(result[i])
+        }
+    })
+    .catch(error => console.log('error', error));
+    
+    var [results, setResults] = useState([]);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+      fetch('http://localhost:3000/results')
+        .then((response) => {
+          if (response.ok) return response.json();
+          throw new Error('something went wrong while requesting posts');
+        })
+        .then((results) => setResults(results))
+        .catch((error) => setError(error.message));
+    }, []);
+
+    if (error) return <h1>{error}</h1>;   
+  
+    // RANDOM RESULTS (limit of 200 requests per day so don't leave this code on...)
+    
+    //fetch('https://my.api.mockaroo.com/reverse_image.json?key=093a4150')
     /*
-    fetch('https://my.api.mockaroo.com/reverse_image.json?key=093a4150')
+    fetch('http://localhost:4000/results/')
     .then(response => response.json())
     .then(function (result) {
         for (var i = 0; i < result.length; i++) {
@@ -34,6 +66,8 @@ function Results() {
     if (error) return <h1>{error}</h1>;
     
     */
+
+    /*
     const results = [{
         "source": "Alphazap",
         "date": "01/21/2022",
@@ -76,7 +110,7 @@ function Results() {
         "link": "webeden.co.uk"
       }
     ];
-    
+    */
     return (
         <div className="container">
             <div className="original">
@@ -100,7 +134,19 @@ function Results() {
               )}
             </div>
 
-            <button className="download">Download Results</button>
+            <div className="download-button">
+              {results.length > 0 ? (
+                <>
+                  <Download
+                    data={results}
+                  />
+                </>
+              ) : (
+              <h1>No Posts to display</h1>
+              )}
+            </div>
+
+            
         </div>
     )
 }

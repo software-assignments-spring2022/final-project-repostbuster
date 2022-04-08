@@ -1,4 +1,4 @@
-import "./searchSetting.css";
+import "./styles.css";
 import React, {
     useState,
     useEffect,
@@ -68,16 +68,16 @@ const SearchSetting = (props) => {
 
                 {/* Click submit --> redirect to searchSetting */}
                 {/* Give the image & file name to searchSetting */}
-                <a 
-                    class="btn btn-primary navbar__item_right" 
-                    href="results" 
+                <a
+                    class="btn btn-primary navbar__item_right"
+                    href="results"
                     role="button">
                         Submit
                 </a>
 
-            <a 
-                class="btn btn-primary navbar__item_left" 
-                href="uploadImage" 
+            <a
+                class="btn btn-primary navbar__item_left"
+                href="uploadImage"
                 role="button">
                     Back
             </a>
@@ -134,7 +134,7 @@ const SearchSetting = (props) => {
                 </div>
             </div>
         </div>
-        
+
     );
 };
 

@@ -124,3 +124,8 @@ typings/
 ## Jekyll artifacts
 **/.jekyll-cache
 **/_site/
+.idea/modules.xml
+.idea/Untitled.iml
+.idea/vcs.xml
+.vscode/launch.json
+.idea/workspace.xml

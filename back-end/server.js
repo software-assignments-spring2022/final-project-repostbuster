@@ -33,5 +33,10 @@ app.post('/login', (req, res) => {
     res.send("SUCCESS");
     //if match return success page
 });
+
+
+module.exports = {
+    close: close,
+}
 // export the close function
-module.exports = app;
+//module.exports = app;
