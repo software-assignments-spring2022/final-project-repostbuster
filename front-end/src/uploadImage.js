@@ -103,7 +103,6 @@ const NavBar = () => {
                 <img src={imageSrc} />
             ))}
 
-
             <a
                 class="btn btn-primary navbar__item_right"
                 href="searchSetting"
