@@ -2,6 +2,7 @@
 const express = require("express"); // CommonJS import style!
 const app = express(); // instantiate an Express object
 const path = require("path");
+const bodyParser = require("body-parser");
 
 // import some useful middleware
 const multer = require("multer"); // middleware to handle HTTP POST requests with file uploads
@@ -17,7 +18,9 @@ app.use(morgan("dev", { skip: (req, res) => process.env.NODE_ENV === "test" }));
 
 // use express's builtin body-parser middleware to parse any data included in a request
 app.use(express.json()); // decode JSON-formatted incoming POST data
-app.use(express.urlencoded({ extended: false })); // decode url-encoded incoming POST data... should we leave it true????????????????
+app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
+app.use(bodyParser.urlencoded({ extended: true }));//parser information sent in request into JSON
+app.use(bodyParser.json());//body parser use JSON format
 
 // make 'public' directory publicly readable with static content
 const publicPath = path.join(__dirname, "public"); // instead of app.use("/static", express.static("public"));
@@ -198,6 +201,38 @@ app.get("/results", (req, res) => {
 
 // Use Express to store user login credentials and preffered search settings for their profile
 // Duardo Akerele
+
+//create an account
+app.post('/register', (req, res) => {
+  try{
+    const username = req.body.email;
+    // need to salt and has password field
+    const password = req.body.password;
+    console.log(req.body);
+    res.send("SUCCESS");
+    //pass fields into database
+  }
+  catch(err){
+    res.send("FAILED "+err);
+  }   
+});
+
+//login
+app.post('/login', (req, res) => {
+    try{
+      const username = req.body.email;
+      const password = req.body.password;
+      //check username & pass agaisnt database entry
+      console.log(req.body);
+      //if match return success page
+      res.send("SUCCESS");
+    }
+    catch(err){
+      res.send("FAILED "+err);
+    }
+    
+});
+
 
 // export the express app we created to make it available to other modules
 module.exports = app; // CommonJS export style!
