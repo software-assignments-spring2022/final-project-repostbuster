@@ -4,15 +4,15 @@ import "./Login.css";
 const Login = () =>{
     return (
         <div className="formContainer">
-            <form action="/login" method="POST">
+            <form action="http://localhost:3001/login" method="POST">
                 <div class="form-outline mb-4">
-                <input type="email" id="form2Example1" class="form-control" />
+                <input name= "email" type="email" id="form2Example1" class="form-control" />
                 <label class="form-label" for="form2Example1">Email address</label>
                 </div>
             
                 
                 <div class="form-outline mb-4">
-                <input type="password" id="form2Example2" class="form-control" />
+                <input name="password" type="password" id="form2Example2" class="form-control" />
                 <label class="form-label" for="form2Example2">Password</label>
                 </div>
             
