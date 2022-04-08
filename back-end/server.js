@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
 // import the express app
-const express = require("express");
-const server = require("./app.js");
-const bodyParser = require('body-parser');
+const server = require("./app");
+//const express = require("express");
+//const app = express();
 
 // which port to listen for HTTP(S) requests
-const port = 3001;
+const port = 3000;
 
 const listener = server.listen(port, () => {
     console.log("listening on "+port);
