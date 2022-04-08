@@ -30,7 +30,7 @@ const Home = (props) => {
     const [file, setFile] = useState(); */
 
     const handleClick = () => {
-        axios.post("http://localhost:3000/home", image).then((res) => {
+        axios.post("http://localhost:3000/image-upload", image).then((res) => {
             console.log("Axios response ", res);
         });
     };
@@ -43,7 +43,6 @@ const Home = (props) => {
 
         formData.append("image", e.target.files[0], e.target.files[0].name);
         setImage(formData);
-
     };
 
     /*  -------------------------------------------------- Attempt 2
@@ -107,19 +106,17 @@ const Home = (props) => {
                     Learn how it works!
                 </Button>
             </div>
-                        
-            <div id="ImageUploadButton">
 
-                
+            <div id="ImageUploadButton">
                 <input type="file" onChange={handleFileInput} />
                 <button onClick={handleClick}>Upload!</button>
             </div>
-            
+
             <form action="http://localhost:3001/home" method="POST">
-                <input type="file" name="file"  onChange={handleFileInput}/>
-                <input type="submit" value="Submit!!!"  />
+                <input type="file" name="file" onChange={handleFileInput} />
+                <input type="submit" value="Submit!!!" />
             </form>
-            
+
             <InputGroup className="mb-3">
                 <FormControl
                     aria-label="Example text with button addon"
