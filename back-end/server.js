@@ -8,16 +8,15 @@ const server = require("./app");
 // which port to listen for HTTP(S) requests
 const port = 3000;
 
-const listener = server.listen(port, function () {
-    console.log(`Server running on port ${port}`);
+const listener = server.listen(port, () => {
+    console.log("listening on "+port);
 });
 
 const close = () => {
     listener.close();
 };
 
-
 module.exports = {
     close: close,
-};
+}
 
