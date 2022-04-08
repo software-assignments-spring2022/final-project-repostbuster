@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./uploadImage.css";
+import "./styles.css";
 import searchSetting from "./searchSetting.js";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -102,6 +102,36 @@ const NavBar = () => {
             {imageURL.map((imageSrc) => (
                 <img src={imageSrc} />
             ))}
+
+            <a
+                class="btn btn-primary navbar__item_right"
+                href="searchSetting"
+                role="button">
+                    Next
+            </a>
+
+            <a
+                class="btn btn-primary navbar__item_left"
+                href="home"
+                role="button">
+                    Back
+            </a>
+            {
+            //<Link
+            //    to="/searchSetting"
+            //    className="navbar__item_right"
+            //>
+            //    Next
+            //</Link>
+
+
+			//<Link
+            //    to="/home"
+            //    className="navbar__item_left"
+            //>
+            //    Back
+            //</Link>
+            }
         </header>
     );
 };
