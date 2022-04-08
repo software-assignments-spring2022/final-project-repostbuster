@@ -2,7 +2,6 @@
 const express = require("express"); // CommonJS import style!
 const app = express(); // instantiate an Express object
 const path = require("path");
-const bodyParser = require("body-parser");
 
 // import some useful middleware
 const multer = require("multer"); // middleware to handle HTTP POST requests with file uploads
@@ -19,8 +18,8 @@ app.use(morgan("dev", { skip: (req, res) => process.env.NODE_ENV === "test" }));
 // use express's builtin body-parser middleware to parse any data included in a request
 app.use(express.json()); // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
-app.use(bodyParser.urlencoded({ extended: true }));//parser information sent in request into JSON
-app.use(bodyParser.json());//body parser use JSON format
+app.use(bodyParser.urlencoded({ extended: true })); //parser information sent in request into JSON
+app.use(bodyParser.json()); //body parser use JSON format
 
 // make 'public' directory publicly readable with static content
 const publicPath = path.join(__dirname, "public"); // instead of app.use("/static", express.static("public"));
@@ -39,14 +38,14 @@ app.use(
     })
 );
 
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
     res.send("Welcome to RepostBuster!");
 });
 
-// Dont forget to create unit tests for your respective functions!
+// export the express app we created to make it available to other modules
+module.exports = app; // CommonJS export style!
 
-// Reverse Image Search API is called once user clicks the submit button on the Search Settings Page.
-// Camilo Villavicencio
+// Dont forget to create unit tests for your respective functions!
 
 // Backend to do the Image I/O on the home page
 // Hyujun Choi
@@ -104,6 +103,67 @@ app.post("/image-upload", upload.array("image"), (req, res) => {
     res.send("POST request received on server");
 });
 
+// Reverse Image Search API is called once user clicks the submit button on the Search Settings Page.
+// Camilo Villavicencio
+
+async function detectWeb(fileName) {
+    // [START vision_web_detection]
+
+    // Imports the Google Cloud client library
+    const vision = require("@google-cloud/vision");
+
+    // Creates a client
+    const client = new vision.ImageAnnotatorClient();
+
+    // Detect similar images on the web to a local file
+    const [result] = await client.webDetection(fileName);
+    const webDetection = result.webDetection;
+
+    //Full matching results
+    if (webDetection.fullMatchingImages.length) {
+        console.log(
+            `Full matches found: ${webDetection.fullMatchingImages.length}`
+        );
+        webDetection.fullMatchingImages.forEach((image) => {
+            console.log(`  URL: ${image.url}`);
+            console.log(`  Score: ${image.score}`);
+        });
+    }
+
+    //Partial matching results
+    if (webDetection.partialMatchingImages.length) {
+        console.log(
+            `Partial matches found: ${webDetection.partialMatchingImages.length}`
+        );
+        webDetection.partialMatchingImages.forEach((image) => {
+            console.log(`  URL: ${image.url}`);
+            console.log(`  Score: ${image.score}`);
+        });
+    }
+
+    //Web entity results
+    if (webDetection.webEntities.length) {
+        console.log(`Web entities found: ${webDetection.webEntities.length}`);
+        webDetection.webEntities.forEach((webEntity) => {
+            console.log(`  Description: ${webEntity.description}`);
+            console.log(`  Score: ${webEntity.score}`);
+        });
+    }
+
+    //Labels
+    if (webDetection.bestGuessLabels.length) {
+        console.log(
+            `Best guess labels found: ${webDetection.bestGuessLabels.length}`
+        );
+        webDetection.bestGuessLabels.forEach((label) => {
+            console.log(`  Label: ${label.label}`);
+        });
+    }
+
+    console.log("GOOGLE API LOADED");
+    // [END vision_web_detection]
+}
+
 // Use Express to store the Image Search results
 // Riley Valls
 app.get("/results", (req, res) => {
@@ -138,36 +198,32 @@ app.get("/results", (req, res) => {
 // Duardo Akerele
 
 //create an account
-app.post('/register', (req, res) => {
-  try{
-    const username = req.body.email;
-    // need to salt and has password field
-    const password = req.body.password;
-    console.log(req.body);
-    res.send("SUCCESS");
-    //pass fields into database
-  }
-  catch(err){
-    res.send("FAILED "+err);
-  }   
+app.post("/register", (req, res) => {
+    try {
+        const username = req.body.email;
+        // need to salt and has password field
+        const password = req.body.password;
+        console.log(req.body);
+        res.send("SUCCESS");
+        //pass fields into database
+    } catch (err) {
+        res.send("FAILED " + err);
+    }
 });
 
 //login
-app.post('/login', (req, res) => {
-    try{
-      const username = req.body.email;
-      const password = req.body.password;
-      //check username & pass agaisnt database entry
-      console.log(req.body);
-      //if match return success page
-      res.send("SUCCESS");
+app.post("/login", (req, res) => {
+    try {
+        const username = req.body.email;
+        const password = req.body.password;
+        //check username & pass agaisnt database entry
+        console.log(req.body);
+        //if match return success page
+        res.send("SUCCESS");
+    } catch (err) {
+        res.send("FAILED " + err);
     }
-    catch(err){
-      res.send("FAILED "+err);
-    }
-    
 });
-
 
 // export the express app we created to make it available to other modules
 module.exports = app; // CommonJS export style!

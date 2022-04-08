@@ -1,0 +1,269 @@
+{
+    "responses": [
+      {
+        "webDetection": {
+          "webEntities": [
+            {
+              "entityId": "/g/11c47fvr88",
+              "score": 1.2850201,
+              "description": "Carnival in Rio de Janeiro 2020"
+            },
+            {
+              "entityId": "/g/11rrvnd97d",
+              "score": 1.1940886,
+              "description": "2022 Carnival of Las Palmas"
+            },
+            {
+              "entityId": "/m/05m_9_s",
+              "score": 1.0752,
+              "description": "Carnival of Santa Cruz de Tenerife"
+            },
+            {
+              "entityId": "/m/089g4s",
+              "score": 0.95805,
+              "description": "Nice Carnival"
+            },
+            {
+              "entityId": "/m/09l9f",
+              "score": 0.7397,
+              "description": "Carnival"
+            },
+            {
+              "entityId": "/m/0h3qbv",
+              "score": 0.71175003,
+              "description": "Carnival of Cádiz"
+            },
+            {
+              "entityId": "/g/11dfld264z",
+              "score": 0.65265,
+              "description": "Saint Lucia Carnival"
+            },
+            {
+              "entityId": "/m/064qt0b",
+              "score": 0.58185,
+              "description": "Carnaval de Ponce"
+            },
+            {
+              "entityId": "/m/063r3",
+              "score": 0.4501,
+              "description": "Parade"
+            },
+            {
+              "entityId": "/m/0hr5k",
+              "score": 0.4463,
+              "description": "Festival"
+            }
+          ],
+          "fullMatchingImages": [
+            {
+              "url": "https://triniinxisle.com/wp-content/uploads/2019/01/Carnival-Budget.jpg"
+            },
+            {
+              "url": "https://storyonedata.blob.core.windows.net/orginalimages/edc75820-3e5f-4f28-a5d9-033834d2daee.jpg"
+            },
+            {
+              "url": "https://klein-media.s3.amazonaws.com/wp-content/blogs.dir/home/smcsites/public_html/wp-content/blogs.dir/72/files/2020/03/03213339/quinten-de-graaf-KB0Ipylp7dc-unsplash.jpg"
+            },
+            {
+              "url": "https://1000lugaresparair.files.wordpress.com/2017/11/quinten-de-graaf-278848.jpg"
+            },
+            {
+              "url": "https://freewalkingtourrotterdam.com/wp-content/webpc-passthru.php?src=https://freewalkingtourrotterdam.com/wp-content/uploads/2017/07/quinten-de-graaf-278848.jpg&nocache=1"
+            },
+            {
+              "url": "https://get.pxhere.com/photo/people-dance-carnival-festival-sports-samba-event-entertainment-performing-arts-1407044.jpg"
+            },
+            {
+              "url": "https://mocah.org/uploads/posts/5389909-woman-friend-festival-colorful-colourful-costume-dressing-up-headdress-selfie-iphone-holding-taking-a-photo-caucasian-retrato-png-images.jpg"
+            },
+            {
+              "url": "https://boasvendas.uatt.com.br/wp-content/uploads/2019/02/quinten-de-graaf-278848-unsplash.jpg"
+            },
+            {
+              "url": "https://unsplash.com/photos/KB0Ipylp7dc/download"
+            },
+            {
+              "url": "https://static.wixstatic.com/media/nsplsh_4b42304970796c70376463~mv2_d_5184_3456_s_4_2.jpg/v1/fill/w_5184,h_3456,al_c,q_90/nsplsh_4b42304970796c70376463~mv2_d_5184_3456_s_4_2.jpg"
+            }
+          ],
+          "partialMatchingImages": [
+            {
+              "url": "https://triniinxisle.com/wp-content/uploads/2019/01/Carnival-Budget-1024x683.jpg"
+            },
+            {
+              "url": "https://blog.giftbasketsoverseas.com/wp-content/uploads/2018/09/quinten-de-graaf-278848-unsplash1-1024x683.jpg"
+            },
+            {
+              "url": "https://images.squarespace-cdn.com/content/v1/5d06615f91854d00012c12e0/1581267399455-EJ3LQZCKE7UQJ83FPV2E/image-asset.jpeg?format=1000w"
+            },
+            {
+              "url": "https://explore-us-uploads.imgix.net/wp-content/uploads/2019/07/2101HJ-trinidad-3-original.jpg?auto=format&q=50"
+            },
+            {
+              "url": "https://www.thetopvillas.com/blog/wp-content/uploads/2018/08/ladys.jpg"
+            },
+            {
+              "url": "https://cdn.forexchange.it/static/img/blog/visual/newblog/1580143644150-carnevale-rio-2020.jpg"
+            },
+            {
+              "url": "https://st3.idealista.com/cms/archivos/2019-01/media/image/carnival%20unsplash.jpg?fv=j2e_BbDA"
+            },
+            {
+              "url": "https://images.squarespace-cdn.com/content/v1/5d06615f91854d00012c12e0/1581267399455-EJ3LQZCKE7UQJ83FPV2E/image-asset.jpeg?format=500w"
+            },
+            {
+              "url": "https://cdn.theculturetrip.com/wp-content/uploads/2017/11/quinten-de-graaf-278848-1024x683.jpg"
+            },
+            {
+              "url": "https://blog.geschenkkoerbeversand.de/wp-content/uploads/2019/07/quinten-de-graaf-278848-unsplash1-1024x683-1024x683.jpg"
+            }
+          ],
+          "pagesWithMatchingImages": [
+            {
+              "url": "https://www.idealista.com/en/news/lifestyle-spain/2019/01/23/6376-best-carnivals-spain-2020",
+              "pageTitle": "Best \u003cb\u003ecarnivals\u003c/b\u003e in \u003cb\u003eSpain 2020\u003c/b\u003e - Idealista",
+              "fullMatchingImages": [
+                {
+                  "url": "https://st3.idealista.com/cms/archivos/2019-01/media/image/carnival%20unsplash.jpg?fv=j2e_BbDA"
+                },
+                {
+                  "url": "https://st3.idealista.com/cms/archivos/styles/amp_1200x675_16_9/public/2019-01/media/image/carnival%20unsplash.jpg?fv=_JdBiLeD&itok=Sj5C0Jx7"
+                }
+              ]
+            },
+            {
+              "url": "https://www.barcelona-life.com/sitges-carnival",
+              "pageTitle": "Sitges \u003cb\u003eCarnival 2020\u003c/b\u003e (18-26th Feb) ~ Your Party Guide!",
+              "partialMatchingImages": [
+                {
+                  "url": "https://www.barcelona-life.com/wp-content/uploads/2019/11/carnaval-sitges-barcelona.jpg"
+                }
+              ]
+            },
+            {
+              "url": "https://naturaty.com/magazine/carnival-of-santa-cruz-5-interesting-facts/",
+              "pageTitle": "\u003cb\u003eCarnival\u003c/b\u003e of Santa Cruz: 5 interesting facts | Naturaty",
+              "partialMatchingImages": [
+                {
+                  "url": "https://naturaty.com/wp-content/uploads/2020/01/quinten-de-graaf-KB0Ipylp7dc-unsplash-1024x683.jpg"
+                }
+              ]
+            },
+            {
+              "url": "https://www.guidetocanaryislands.com/las-palmas-de-gran-canaria-carnival/",
+              "pageTitle": "Las Palmas de Gran Canaria \u003cb\u003eCarnival\u003c/b\u003e 2022: No street parties this year",
+              "partialMatchingImages": [
+                {
+                  "url": "https://s0.blt.ro/guidetocanaryislands.com/img/o/media/grancanaria/events/carnival/las-palmas-de-gran-canaria/las-palmas-de-gran-canaria-carnival-spain-800-450.1594383453.jpg"
+                }
+              ]
+            },
+            {
+              "url": "https://www.esn.org/blog/12-places-visit-during-carnival",
+              "pageTitle": "12 Places to Visit During \u003cb\u003eCarnival\u003c/b\u003e | ESNblog - Erasmus Student ...",
+              "fullMatchingImages": [
+                {
+                  "url": "https://www.esn.org/blog/sites/default/files/3_22.jpg"
+                }
+              ]
+            },
+            {
+              "url": "https://www.cariviews.com/blog/2020-caribbean-carnival-dates",
+              "pageTitle": "\u003cb\u003e2020\u003c/b\u003e Caribbean \u003cb\u003eCarnival\u003c/b\u003e dates",
+              "fullMatchingImages": [
+                {
+                  "url": "https://images.squarespace-cdn.com/content/v1/5d06615f91854d00012c12e0/1581267399455-EJ3LQZCKE7UQJ83FPV2E/image-asset.jpeg"
+                },
+                {
+                  "url": "https://images.squarespace-cdn.com/content/v1/5d06615f91854d00012c12e0/1581267399455-EJ3LQZCKE7UQJ83FPV2E/image-asset.jpeg?format=1000w"
+                },
+                {
+                  "url": "https://images.squarespace-cdn.com/content/v1/5d06615f91854d00012c12e0/1581267399455-EJ3LQZCKE7UQJ83FPV2E/image-asset.jpeg?format=500w"
+                }
+              ]
+            },
+            {
+              "url": "https://www.guidetocanaryislands.com/maspalomas-carnival/",
+              "pageTitle": "Maspalomas \u003cb\u003eCarnival\u003c/b\u003e 2022 has been postponed until June",
+              "partialMatchingImages": [
+                {
+                  "url": "https://s0.blt.ro/guidetocanaryislands.com/img/t/800x450/media/grancanaria/events/carnival/las-palmas-de-gran-canaria/las-palmas-de-gran-canaria-carnival-spain-800-450.1594383453.jpg"
+                }
+              ]
+            },
+            {
+              "url": "https://www.amexessentials.com/latin-american-carnivals/",
+              "pageTitle": "Party People: 10 Authentic Latin American \u003cb\u003eCarnivals\u003c/b\u003e",
+              "partialMatchingImages": [
+                {
+                  "url": "https://www.amexessentials.com/wp-content/uploads/2017/12/opener-latam-festivals-420x236@2x.jpg"
+                },
+                {
+                  "url": "https://www.amexessentials.com/wp-content/uploads/2017/12/opener-latam-festivals.jpg"
+                },
+                {
+                  "url": "https://www.amexessentials.com/wp-content/uploads/2017/12/opener-latam-festivals-600x390.jpg"
+                }
+              ]
+            },
+            {
+              "url": "https://www.stlucia.org/en/events/saint-lucia-carnival/",
+              "pageTitle": "Saint Lucia \u003cb\u003eCarnival\u003c/b\u003e",
+              "fullMatchingImages": [
+                {
+                  "url": "https://www.stlucia.org/wp-content/uploads/2019/05/278848-unsplash-opti.jpg"
+                }
+              ]
+            },
+            {
+              "url": "https://unsplash.com/s/photos/carnival",
+              "pageTitle": "100+ \u003cb\u003eCarnival\u003c/b\u003e Pictures | Download Free Images on Unsplash",
+              "partialMatchingImages": [
+                {
+                  "url": "https://images.unsplash.com/photo-1496767000195-3841ae3f97f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGNhcm5pdmFsfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+                }
+              ]
+            }
+          ],
+          "visuallySimilarImages": [
+            {
+              "url": "https://thumbs.dreamstime.com/b/carnival-flex-female-masquerader-wearing-beautiful-costume-headdress-takes-part-tuesday-celebrations-port-spain-41139663.jpg"
+            },
+            {
+              "url": "http://www.dobrich.bg/files/news/original_74680672_427436108156940_8115107467592990720_n2.png"
+            },
+            {
+              "url": "https://i.pinimg.com/736x/9f/5f/0b/9f5f0b8642f024e33e1b3863933ede09.jpg"
+            },
+            {
+              "url": "https://c8.alamy.com/comp/2B0XKT0/port-of-spain-trinidad-tt-21st-feb-2020-traditional-carnival-characters-took-to-the-streets-of-port-of-spain-friday-21-february-2020-for-a-noon-time-parade-in-one-of-many-events-leading-up-to-carnival-which-will-be-on-24th-and-25th-february-2020-credit-g-ronald-lopezzuma-wirealamy-live-news-2B0XKT0.jpg"
+            },
+            {
+              "url": "https://thumbs.dreamstime.com/b/traditional-carnival-spanish-town-palamos-catalonia-many-people-costume-interesting-make-up-spain-traditional-173585364.jpg"
+            },
+            {
+              "url": "https://c8.alamy.com/comp/HR7J2E/badajoz-spain-sunday-february26-2017-participants-in-colorful-costumes-HR7J2E.jpg"
+            },
+            {
+              "url": "https://l450v.alamy.com/450v/2b15gw9/cadiz-spain-22nd-feb-2020-the-men-of-comparsa-oh-capitan-my-capitan-won-the-first-prize-in-the-category-of-comparsas-at-the-annual-carnival-competition-of-musical-groups-coac-2020-the-carnival-of-cadiz-is-a-festival-of-international-tourist-interest-every-year-different-music-groups-compete-against-each-other-in-different-categories-and-styles-the-texts-cover-various-topics-of-life-and-current-news-always-with-humour-sarcasm-and-sensitivity-credit-felipe-passolasdpaalamy-live-news-2b15gw9.jpg"
+            },
+            {
+              "url": "https://l450v.alamy.com/450v/2b1715a/malaga-spain-23rd-feb-2020-a-woman-dressed-in-costume-performs-during-the-traditional-carnivalthe-celebrations-of-the-carnival-in-the-capital-will-be-held-from-22-february-to-1-march-credit-jesus-meridasopa-imageszuma-wirealamy-live-news-2b1715a.jpg"
+            },
+            {
+              "url": "https://image.shutterstock.com/image-photo/santa-cruz-de-tenerife-spain-260nw-2094177793.jpg"
+            },
+            {
+              "url": "https://c8.alamy.com/comp/2B11YDJ/madrid-spain-22nd-feb-2020-the-carnival-of-madrid-2020-with-the-participation-of-latin-american-immigrantscarnival-a-celebration-before-christian-lent-which-begins-with-ash-wednesday-and-which-has-a-variable-date-between-february-and-march-according-to-the-year-traditionally-it-begins-on-a-thursday-thursday-lardero-and-ends-the-following-tuesday-carnival-tuesday-the-carnival-combines-costumes-singing-groups-parades-and-street-parties-despite-the-differences-that-its-celebration-presents-in-the-world-its-common-characteristic-is-that-of-being-a-period-of-permissiveness-and-s-2B11YDJ.jpg"
+            }
+          ],
+          "bestGuessLabels": [
+            {
+              "label": "spain carnival 2020",
+              "languageCode": "en"
+            }
+          ]
+        }
+      }
+    ]
+  }

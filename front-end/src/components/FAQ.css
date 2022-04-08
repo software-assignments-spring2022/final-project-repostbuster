@@ -1,12 +1,13 @@
+/* webpage content div formatting */
 #content{
     /*background-color: red;*/
     margin: 0 10vw;
     font-size: 18px;
-    text-align: justify;
-    text-justify: inter-word;
+    /*text-align: justify;*/
+    /*text-justify: inter-word;*/
 }
 
-
+/*  */
 #content div{
     padding: 10px 0;
 }
