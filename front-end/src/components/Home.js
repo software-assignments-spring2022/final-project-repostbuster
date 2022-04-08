@@ -30,7 +30,7 @@ const Home = (props) => {
     const [file, setFile] = useState(); */
 
     const handleClick = () => {
-        axios.post("http://localhost:3000/image-upload", image).then((res) => {
+        axios.post("http://localhost:3000/home", image).then((res) => {
             console.log("Axios response ", res);
         });
     };
@@ -109,60 +109,17 @@ const Home = (props) => {
             </div>
                         
             <div id="ImageUploadButton">
-                {/* ----------------------------------------------------Riley */}
-                {/* <input
-                    type="file"
-                    ref={hiddenFileInput}
-                    onChange={handleChange} // File Explorer pops up
-                    style={{ display: "none" }}
-                /> */}
-
-                {/* <Button
-                    class="uploadImageBtn"
-                    href="uploadImage"
-                    variant="primary"
-                    size="lg"
-                    // onClick={handleClick} // to /uploadImage
-                >
-
-                    Upload an Image
-                </Button> */}
-                {/* ----------------------------------------------------------End Riley */}
-
-                {/* --------------------------------------------------------button  */}
-                {/* <div> */}
-                {/* <input type="file" name="image" onChange={uploadHandler} />{" "} */}
-                {/* pops open file explorer */}
-                {/* </div> */}
-                {/* {images.map((img) => (
-                    <img src={`http://localhost:3000/${img.filename}`} />
-                ))} */}
-
-                {/* -------------------------------------------------------- end button */}
-
-                {/* -------------------------------------------------------- attempt 2 */}
-                {/* <form onSubmit={uploadHandler}>
-                    <input
-                        filename={file}
-                        onChange={(e) => setFile(e.target.files[0])} // store file with useState
-                        type="file" // notice the type
-                        accept="image/*"
-                    ></input>
-                    <input
-                        onChange={(event) => setDescription(event.target.value)}
-                        type="text"
-                    ></input> */}
-                {/* <input type="submit" value="Save" /> */}
-                {/* <button type="submit">Upload an image</button>
-                </form>
-                {images && <img src={images} />} */}
-                {/* -------------------------------------------------------- end attempt 2 */}
 
                 
                 <input type="file" onChange={handleFileInput} />
                 <button onClick={handleClick}>Upload!</button>
             </div>
-
+            
+            <form action="http://localhost:3001/home" method="POST">
+                <input type="file" name="file"  onChange={handleFileInput}/>
+                <input type="submit" value="Submit!!!"  />
+            </form>
+            
             <InputGroup className="mb-3">
                 <FormControl
                     aria-label="Example text with button addon"

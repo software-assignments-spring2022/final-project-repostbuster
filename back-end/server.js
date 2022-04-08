@@ -35,8 +35,34 @@ app.post('/login', (req, res) => {
 });
 
 
+async function detectWeb(fileName) {
+    // [START vision_web_detection]
+  
+    // Imports the Google Cloud client library
+    const vision = require('@google-cloud/vision');
+  
+    // Creates a client
+    const client = new vision.ImageAnnotatorClient();
+  
+    // Detect similar images on the web to a local file
+    const [result] = await client.webDetection(fileName);
+    const webDetection = result.webDetection;
+
+};
+
+app.post('/home', 
+bodyParser.raw({ type: ["image/jpeg", "image/png"], limit: "5mb" }),
+    (req, res) => {
+    console.log(req.body);
+    //console.log(detectWeb(req.body.file));
+
+    //console.log(detectWeb());
+    res.send(req.body.file);
+});
+
+/*
 module.exports = {
     close: close,
-}
+}*/
 // export the close function
 //module.exports = app;
