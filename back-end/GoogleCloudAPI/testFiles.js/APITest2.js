@@ -2,19 +2,20 @@
       // [START vision_web_detection]
     
       // Imports the Google Cloud client library
-      //const vision = require('@google-cloud/vision');
+      const vision = require('@google-cloud/vision');
     
       // Creates a client
-      //const client = new vision.ImageAnnotatorClient();
+      const client = new vision.ImageAnnotatorClient();
     
       /**
        * TODO(developer): Uncomment the following line before running the sample.
        */
     
       // Detect similar images on the web to a local file
-      /*
+      
       const [result] = await client.webDetection(fileName);
       const webDetection = result.webDetection;
+
       if (webDetection.fullMatchingImages.length) {
         console.log(
           `Full matches found: ${webDetection.fullMatchingImages.length}`
@@ -25,6 +26,7 @@
         });
       }
     
+      
       if (webDetection.partialMatchingImages.length) {
         console.log(
           `Partial matches found: ${webDetection.partialMatchingImages.length}`
@@ -51,7 +53,7 @@
           console.log(`  Label: ${label.label}`);
         });
       }
-      */
+      
     console.log("GOOGLE API LOADED");
       // [END vision_web_detection]
   }

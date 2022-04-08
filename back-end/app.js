@@ -46,11 +46,6 @@ module.exports = app; // CommonJS export style!
 
 // Dont forget to create unit tests for your respective functions!
 
-// Reverse Image Search API is called once user clicks the submit button on the Search Settings Page.
-// Camilo Villavicencio
-
-
-
 // Backend to do the Image I/O on the home page
 // Hyujun Choi
 /* app.get("/public/:imageName", (req, res) => {
@@ -106,6 +101,70 @@ app.post("/image-upload", upload.array("image"), (req, res) => {
     console.log("Axios POST body: ", req.body);
     res.send("POST request received on server");
 });
+
+// Reverse Image Search API is called once user clicks the submit button on the Search Settings Page.
+// Camilo Villavicencio
+
+async function detectWeb(fileName) {
+    // [START vision_web_detection]
+  
+    // Imports the Google Cloud client library
+    const vision = require('@google-cloud/vision');
+  
+    // Creates a client
+    const client = new vision.ImageAnnotatorClient();
+  
+    // Detect similar images on the web to a local file
+    const [result] = await client.webDetection(fileName);
+    const webDetection = result.webDetection;
+
+    //Full matching results
+    if (webDetection.fullMatchingImages.length) {
+      console.log(
+        `Full matches found: ${webDetection.fullMatchingImages.length}`
+      );
+      webDetection.fullMatchingImages.forEach(image => {
+        console.log(`  URL: ${image.url}`);
+        console.log(`  Score: ${image.score}`);
+      });
+    }
+  
+    //Partial matching results
+    if (webDetection.partialMatchingImages.length) {
+      console.log(
+        `Partial matches found: ${webDetection.partialMatchingImages.length}`
+      );
+      webDetection.partialMatchingImages.forEach(image => {
+        console.log(`  URL: ${image.url}`);
+        console.log(`  Score: ${image.score}`);
+      });
+    }
+    
+    //Web entity results
+    if (webDetection.webEntities.length) {
+      console.log(`Web entities found: ${webDetection.webEntities.length}`);
+      webDetection.webEntities.forEach(webEntity => {
+        console.log(`  Description: ${webEntity.description}`);
+        console.log(`  Score: ${webEntity.score}`);
+      });
+    }
+    
+    //Labels
+    if (webDetection.bestGuessLabels.length) {
+      console.log(
+        `Best guess labels found: ${webDetection.bestGuessLabels.length}`
+      );
+      webDetection.bestGuessLabels.forEach(label => {
+        console.log(`  Label: ${label.label}`);
+      });
+    }
+    
+  console.log("GOOGLE API LOADED");
+    // [END vision_web_detection]
+}
+
+
+
 
 // Use Express to store the Image Search results
 // Riley Valls

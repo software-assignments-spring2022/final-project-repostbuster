@@ -107,18 +107,7 @@ const Home = (props) => {
                     Learn how it works!
                 </Button>
             </div>
-
-            <form action="/" method="POST">
-                <input type="text" name="your_name" placeholder="Your name" /> <br />
-                <input type="text" name="your_email" placeholder="Your email" /> <br />
-                <input type="checkbox" name="agree" /><label
-                    >I agree to your onerous conditions</label
-                >
-                <br />
-                <input type="submit" value="Submit!!!" />
-            </form>
                         
-
             <div id="ImageUploadButton">
                 {/* ----------------------------------------------------Riley */}
                 {/* <input
@@ -169,8 +158,9 @@ const Home = (props) => {
                 {images && <img src={images} />} */}
                 {/* -------------------------------------------------------- end attempt 2 */}
 
-                <button onClick={handleClick}>Upload!</button>
+                
                 <input type="file" onChange={handleFileInput} />
+                <button onClick={handleClick}>Upload!</button>
             </div>
 
             <InputGroup className="mb-3">
