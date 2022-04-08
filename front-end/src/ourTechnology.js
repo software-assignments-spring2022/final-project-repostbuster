@@ -1,4 +1,5 @@
-import "./ourTechnology.css"
+import "./styles.css"
+
 
 const ourTechnology = () => {
     return (

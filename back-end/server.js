@@ -1,22 +1,17 @@
 #!/usr/bin/env node
 
 // import the express app
-const server = require("./app")
-//const express = require("express");
-//const app = express();
+const express = require("express");
+const app = express();
+const bodyParser = require('body-parser');
 
 // which port to listen for HTTP(S) requests
-const port = 3000;
+const port = 3001;
 
-const listener = server.listen(port, function () {
-    console.log(`Server running on port ${port}`);
-});
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+ 
 
-const close = () => {
-    listener.close();
-}
-/*
-app.use(express.static("front-end\\public"));
 app.listen(port, () => {
     console.log("listening on "+port);
 });
@@ -26,19 +21,20 @@ app.post('/register', (req, res) => {
     const username = req.body.email;
     // need to salt and has password field
     const password = req.body.password;
-
     //pass fields into database
 });
 
 app.post('/login', (req, res) => {
+
     const username = req.body.email;
     const password = req.body.password;
-
     //check username & pass agaisnt database entry
-
+    console.log(req.body);
+    res.send("SUCCESS");
     //if match return success page
 });
-*/
+
+
 module.exports = {
     close: close,
 }
