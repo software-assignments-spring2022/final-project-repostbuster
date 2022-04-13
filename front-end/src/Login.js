@@ -4,7 +4,7 @@ import "./styles.css";
 const Login = () =>{
     return (
         <div className="formContainer">
-            <form action="http://localhost:3001/login" method="POST">
+            <form action="http://localhost:3000/login" method="POST">
                 <div class="form-outline mb-4">
                 <input name= "email" type="email" id="form2Example1" class="form-control" />
                 <label class="form-label" for="form2Example1">Email address</label>

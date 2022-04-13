@@ -10,7 +10,33 @@ require("dotenv").config({ silent: true }); // load environmental variables from
 const morgan = require("morgan"); // middleware for nice logging of incoming HTTP requests
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const bcrypt = require('bcryptjs');
+const UserModel = require('./User');
+const session = require('express-session');
+const MongoDBSession = require('connect-mongodb-session')(session);
+const mongoose = require('mongoose');
+const mongoURI = "mongodb://localhost:27017/sessions";
 
+mongoose
+    .connect(mongoURI).then((res) => {
+        console.log("MongoDB Connected");
+    });
+
+const store = new MongoDBSession({
+    uri:mongoURI,
+    collection:"UserSessions"
+});
+
+
+const isAuth = (req, res, next) => {
+    if(req.session.isAuth) {
+        next();
+    }
+    else {
+
+        res.redirect("/login");
+    }
+};
 // use the morgan middleware to log all incoming http requests
 app.use(morgan("dev", { skip: (req, res) => process.env.NODE_ENV === "test" })); // log all incoming requests, except when in unit test mode.
 // morgan has a few logging default styles - dev is a nice concise color-coded style
@@ -38,9 +64,76 @@ app.use(
     })
 );
 
+app.use(
+    session({
+        secret: 'key',
+        resave: false,
+        saveUninitialized:false,
+        store:store,
+    })
+);
+
 app.get("/home", (req, res) => {
     res.send("Welcome to RepostBuster!");
 });
+
+
+app.post("/register", async (req, res) => {
+    const {username, email, password} = req.body;
+
+    let user = await UserModel.findOne({email});
+     
+    if(user){
+        return res.redirect("/register");
+    }
+
+    const hashedPass = await bcrypt.hash(password, 12);
+
+    user = new UserModel({
+        username,
+        email,
+        password: hashedPass,
+    });
+
+    await user.save();
+
+    res.redirect("/login");
+});
+
+
+
+//login
+app.post("/login", async (req, res) => { 
+   console.log(res);
+   const {username, password} = req.body;
+
+   const user = await UserModel.findOne({username});
+
+   if(!user){
+       return res.redirect("/login");
+   }
+
+   const isMatch = await bcrypt.compare(password, user.password);
+
+   if(!isMatch){
+       return res.redirect("/login");
+   }
+
+   req.session.isAuth = true;
+   res.redirect("/dashboard");
+});
+
+app.get("/dashboard", isAuth, (req, res) => {
+    res.render("front-end/src/Dashboard");
+});
+
+app.post('/logout', (req, res) => {
+    req.session.destroy((err) =>{
+        if(err) throw err;
+        res.redirect("/");
+    });
+});
+
 
 // export the express app we created to make it available to other modules
 module.exports = app; // CommonJS export style!
@@ -198,32 +291,7 @@ app.get("/results", (req, res) => {
 // Duardo Akerele
 
 //create an account
-app.post("/register", (req, res) => {
-    try {
-        const username = req.body.email;
-        // need to salt and has password field
-        const password = req.body.password;
-        console.log(req.body);
-        res.send("SUCCESS");
-        //pass fields into database
-    } catch (err) {
-        res.send("FAILED " + err);
-    }
-});
 
-//login
-app.post("/login", (req, res) => {
-    try {
-        const username = req.body.email;
-        const password = req.body.password;
-        //check username & pass agaisnt database entry
-        console.log(req.body);
-        //if match return success page
-        res.send("SUCCESS");
-    } catch (err) {
-        res.send("FAILED " + err);
-    }
-});
 
 // export the express app we created to make it available to other modules
 module.exports = app; // CommonJS export style!

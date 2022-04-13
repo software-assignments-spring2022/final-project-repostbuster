@@ -15,7 +15,7 @@ import SearchSetting from "./searchSetting";
 import HowItWorks from "./HowItWorks";
 import Login from "./Login.js"
 import Registration from "./Registration.js";
-
+import Dashboard from "./Dashboard";
 import UploadExample from "./upload-example.js";
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
 
           <Route name="login" path="/login" element={<Login />}/>
           <Route name="register" path="/register" element={<Registration />}/>
-
+          <Route name="dashboard" path="/dashboard" element={<Dashboard/>}/>
         </Routes>
       </BrowserRouter>
     </div>

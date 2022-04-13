@@ -3,7 +3,7 @@ import "./styles.css";
 const Registration = () =>{
     return (
         <div className="formContainer">
-            <form  action="http://localhost:3001/register" method="POST">
+            <form  action="http://localhost:3000/register" method="POST">
                 <div class="form-outline mb-4">
                     <input name= "name" type="text" id="registerName" class="form-control" />
                     <label class="form-label" for="registerName">Name</label>
