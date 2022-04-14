@@ -6,7 +6,7 @@ const server = require("./app");
 //const app = express();
 
 // which port to listen for HTTP(S) requests
-const port = 3000;
+const port = 3001;
 
 const listener = server.listen(port, () => {
     console.log("listening on "+port);
