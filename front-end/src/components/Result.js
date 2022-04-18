@@ -10,8 +10,8 @@ function Result (props) {
             <img src="https://picsum.photos/150/150" Image1 alt={props.source} random={1}/>
             </div>
             <div className="details">
-                <p>{source}</p>
-                <p>{date}</p>
+                <p>{description}</p>
+                <p>{score}</p>
                 <a href={link}>Go to Image</a>
             </div>
         </div>

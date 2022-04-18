@@ -19,6 +19,11 @@ function Results() {
         for (var i = 0; i < result.length; i++) {
           results.push(result[i])
         }
+
+        // sort by score (default)
+        results.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
+
+
     })
     .catch(error => console.log('error', error));
     
@@ -35,7 +40,7 @@ function Results() {
         .catch((error) => setError(error.message));
     }, []);
 
-    if (error) return <h1>{error}</h1>;   
+    if (error) return <h1>{error}</h1>;
   
     // RANDOM RESULTS (limit of 200 requests per day so don't leave this code on...)
     
