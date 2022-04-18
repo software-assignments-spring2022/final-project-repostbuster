@@ -1,4 +1,5 @@
-import "./Technology.css"
+import "./styles.css"
+
 
 const Technology = () => {
     return (
@@ -38,8 +39,11 @@ const Technology = () => {
                     metadata, PSE metadata, and the actual search results.
                 </p>
             </section>
+
         </div>
+
     );
+
 }
 
 export default Technology;

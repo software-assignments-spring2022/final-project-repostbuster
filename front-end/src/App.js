@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import Header from './components/Header.js'
@@ -15,6 +15,8 @@ import SearchSetting from "./searchSetting";
 import HowItWorks from "./HowItWorks";
 import Login from "./Login.js"
 import Registration from "./Registration.js";
+
+import UploadExample from "./upload-example.js";
 
 function App() {
   return (
@@ -34,8 +36,10 @@ function App() {
           <Route path="/uploadimage" element={<UploadImage />}/>
           <Route name="searchSetting" path="/searchSetting" element={<SearchSetting />}/>
           <Route name="howItWorks" path="/HowItWorks" element={<HowItWorks />}/>
+
           <Route name="login" path="/login" element={<Login />}/>
           <Route name="register" path="/register" element={<Registration />}/>
+
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,4 +1,4 @@
-import "./HowItWorks.css"
+import "./styles.css"
 
 const HowItWorks = () => {
     return (
@@ -14,10 +14,9 @@ const HowItWorks = () => {
             <p>Once you click submit, RepostBuster will return any instances of your uploaded image that it can find on the internet.</p>
         </section>
 
-    
+
       </div>
     );
   }
-  
+
   export default HowItWorks;
-  
