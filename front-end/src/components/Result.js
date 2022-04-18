@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function Result (props) {
-    const { image, source, date, link } = props.data;
+    const { image, description, score, link } = props.data;
     // change picsum random image to props.image
     // change link to actual link
     return (
@@ -12,7 +12,7 @@ function Result (props) {
             <div className="details">
                 <p>{source}</p>
                 <p>{date}</p>
-                <a href={"/results"}>Go to Image</a>
+                <a href={link}>Go to Image</a>
             </div>
         </div>
     )
