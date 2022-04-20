@@ -34,9 +34,10 @@ const isAuth = (req, res, next) => {
     }
     else {
 
-        res.redirect("/login");
+        res.redirect("http://localhost:4000/login");
     }
 };
+
 // use the morgan middleware to log all incoming http requests
 app.use(morgan("dev", { skip: (req, res) => process.env.NODE_ENV === "test" })); // log all incoming requests, except when in unit test mode.
 // morgan has a few logging default styles - dev is a nice concise color-coded style
@@ -84,7 +85,7 @@ app.post("/register", async (req, res) => {
     let user = await UserModel.findOne({email});
      
     if(user){
-        return res.redirect("/register");
+        return res.send(400);
     }
 
     const hashedPass = await bcrypt.hash(password, 12);
@@ -104,19 +105,16 @@ app.post("/register", async (req, res) => {
 
 //login
 app.post("/login", async (req, res) => { 
-   console.log(res);
-   const {username, password} = req.body;
-
-   const user = await UserModel.findOne({username});
-
+   const {email, password} = req.body;
+   const user = await UserModel.findOne({email});
    if(!user){
-       return res.redirect("/login");
+       return res.send(400);
    }
 
    const isMatch = await bcrypt.compare(password, user.password);
 
    if(!isMatch){
-       return res.redirect("/login");
+       return res.send(400);
    }
 
    req.session.isAuth = true;
@@ -124,12 +122,14 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/dashboard", isAuth, (req, res) => {
+    console.log(req.session.isAuth);
     res.render("front-end/src/Dashboard");
 });
 
-app.post('/logout', (req, res) => {
+app.use('/logout', (req, res) => {
     req.session.destroy((err) =>{
         if(err) throw err;
+        req.session.isAuth = false;
         res.redirect("/");
     });
 });

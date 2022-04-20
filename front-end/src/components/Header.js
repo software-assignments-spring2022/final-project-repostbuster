@@ -1,6 +1,13 @@
 import React from "react";
+import { useEffect } from "react";
 
-function Header() {
+const  Header = () => {
+    const [session, setSession] = React.useState(null);
+
+    // useEffect(() => {
+    //     setSession = localStorage.getItem("login");
+
+    // }, [session])
     return (
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
