@@ -20,8 +20,8 @@ function Results() {
           results.push(result[i])
         }
 
-        // sort by score (default)
-        results.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
+        // sort by score (default) (may not have anything to sort by)
+        //results.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
 
 
     })
