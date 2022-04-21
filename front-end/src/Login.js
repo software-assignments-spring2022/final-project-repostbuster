@@ -1,8 +1,11 @@
 import axios from 'axios';
 import React from "react";
+import { Navigate } from 'react-router';
 import "./styles.css";
 
-const Login = () =>{
+
+const Login = ({setUser}) =>{
+    const [fireRedirect, setfireRedirect] = React.useState(false);
     const [formValue, setformValue] = React.useState({
         email: '',
         password: ''
@@ -30,7 +33,9 @@ const Login = () =>{
                 'Content-Type': 'application/json'
             }
           }).then((res) => {
-                console.log(res);
+                localStorage.setItem('token', res.data.accessToken);
+                setUser(localStorage.getItem('token'));
+                setfireRedirect(true);
                 
             }).catch((error) => {
                 console.log(error);
@@ -40,6 +45,7 @@ const Login = () =>{
     
     return (
         <div className="formContainer">
+             {fireRedirect &&  <Navigate to="/dashboard" push={true}/>}
             <form onSubmit={handleSubmit}>
                 <div className="form-outline mb-4">
                 <input onChange={handleChange} name= "email" type="email" id="form2Example1" className="form-control" />

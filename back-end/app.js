@@ -13,6 +13,7 @@ const bodyParser = require("body-parser");
 const bcrypt = require('bcryptjs');
 const UserModel = require('./User');
 const session = require('express-session');
+const jwt = require('jsonwebtoken');
 const MongoDBSession = require('connect-mongodb-session')(session);
 const mongoose = require('mongoose');
 const mongoURI = "mongodb://localhost:27017/sessions";
@@ -27,6 +28,17 @@ const store = new MongoDBSession({
     collection:"UserSessions"
 });
 
+const authenticate = (req, res, next) => {
+    const header = req.header['authorization'];
+    const token = header.split(' ')[1];
+    if(token == null) return res.sendStatus(401);
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if(err) return res.sendStatus(403);
+        req.user = user;
+        next();
+    });
+};
 
 const isAuth = (req, res, next) => {
     if(req.session.isAuth) {
@@ -78,7 +90,7 @@ app.get("/home", (req, res) => {
     res.send("Welcome to RepostBuster!");
 });
 
-
+//register
 app.post("/register", async (req, res) => {
     const {username, email, password} = req.body;
 
@@ -117,20 +129,22 @@ app.post("/login", async (req, res) => {
        return res.send(400);
    }
 
-   req.session.isAuth = true;
-   res.redirect("/dashboard");
+   const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET);
+   res.json({accessToken: accessToken});
+//    req.session.isAuth = true;
+//    res.send({loggedIn: true});
 });
 
-app.get("/dashboard", isAuth, (req, res) => {
-    console.log(req.session.isAuth);
-    res.render("front-end/src/Dashboard");
-});
+// app.get("/dashboard", isAuth, (req, res) => {
+//     console.log(req.session.isAuth);
+//     res.render("front-end/src/Dashboard");
+// });
 
 app.use('/logout', (req, res) => {
     req.session.destroy((err) =>{
         if(err) throw err;
         req.session.isAuth = false;
-        res.redirect("/");
+        res.send(200);
     });
 });
 
