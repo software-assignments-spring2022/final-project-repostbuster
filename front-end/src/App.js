@@ -1,5 +1,5 @@
 import "./styles.css";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 
 import Header from './components/Header.js'
 import Results from './components/Results.js';
@@ -15,14 +15,22 @@ import SearchSetting from "./searchSetting";
 import HowItWorks from "./HowItWorks";
 import Login from "./Login.js"
 import Registration from "./Registration.js";
-
+import Dashboard from "./Dashboard";
 import UploadExample from "./upload-example.js";
+import React from "react";
+
+function RequireAuth({ children }) {
+  return localStorage.getItem('token') ? children  : <Navigate to='/login' replace/>;
+}
 
 function App() {
+
+  const [user, setUser] = React.useState(localStorage.getItem('token'));
+
   return (
     <div>
       <BrowserRouter>
-        <Header/>
+        <Header setUser={setUser} user={user}/>
         <Routes>
 
           <Route path="/about" element={<About />}/>
@@ -37,9 +45,9 @@ function App() {
           <Route name="searchSetting" path="/searchSetting" element={<SearchSetting />}/>
           <Route name="howItWorks" path="/HowItWorks" element={<HowItWorks />}/>
 
-          <Route name="login" path="/login" element={<Login />}/>
+          <Route name="login" path="/login" element={<Login setUser={setUser}/>}/>
           <Route name="register" path="/register" element={<Registration />}/>
-
+          <Route name="dashboard" path="/dashboard" element = {<RequireAuth> <Dashboard/> </RequireAuth>}/>
         </Routes>
       </BrowserRouter>
     </div>
