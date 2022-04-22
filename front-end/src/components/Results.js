@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./Results.css";
 import { LoremPicsum } from "react-lorem-picsum";
 import Pagination from "./Pagination";
 import Result from "./Result";
 import Download from "./Download";
 import axios from 'axios';
+import "../styles.css"
 
 
 function Results() {
@@ -21,7 +21,7 @@ function Results() {
         }
     })
     .catch(error => console.log('error', error));
-    
+
     var [results, setResults] = useState([]);
     const [error, setError] = useState('');
 
@@ -35,10 +35,10 @@ function Results() {
         .catch((error) => setError(error.message));
     }, []);
 
-    if (error) return <h1>{error}</h1>;   
-  
+    if (error) return <h1>{error}</h1>;
+
     // RANDOM RESULTS (limit of 200 requests per day so don't leave this code on...)
-    
+
     //fetch('https://my.api.mockaroo.com/reverse_image.json?key=093a4150')
     /*
     fetch('http://localhost:4000/results/')
@@ -49,7 +49,7 @@ function Results() {
         }
     })
     .catch(error => console.log('error', error));
-    
+
     const [results, setResults] = useState([]);
     const [error, setError] = useState('');
 
@@ -64,7 +64,7 @@ function Results() {
     }, []);
 
     if (error) return <h1>{error}</h1>;
-    
+
     */
 
     /*
@@ -146,7 +146,7 @@ function Results() {
               )}
             </div>
 
-            
+
         </div>
     )
 }

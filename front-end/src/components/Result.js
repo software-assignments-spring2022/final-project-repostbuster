@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../styles.css"
 
 function Result (props) {
     const { image, source, date, link } = props.data;
