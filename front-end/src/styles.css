@@ -49,6 +49,7 @@ code {
 .homeContent{
     /*background-color: red;*/
     margin: 0 10vw;
+
 }
 
 /*uploadImage*/
@@ -99,8 +100,23 @@ code {
 }
 
 .navbar-inverse .navbar-brand {
+  /* deals with the main title color */
     color: #1A3C40;
     font-weight: bold;
+    font-size: 27px;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    /* affects menu bar look */
+    color: beige;
+    background-color: #1D5C63;
+    border-radius: 25px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  /* for the navbar elements that are not selected */
+    color: #EDE6DB;
+
 }
 
 
@@ -201,6 +217,17 @@ code {
 
 }
 
+.btn-primary:hover {
+    color: #fff;
+    background-color: #417D7A;
+    border-color: #black;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1D5C63;
+    border-color: #black;
+}
 /*App*/
 .App {
   text-align: center;
