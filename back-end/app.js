@@ -110,7 +110,7 @@ app.post("/register", async (req, res) => {
 
     await user.save();
 
-    res.redirect("/login");
+    res.send(200);
 });
 
 
@@ -131,14 +131,9 @@ app.post("/login", async (req, res) => {
 
    const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET);
    res.json({accessToken: accessToken});
-//    req.session.isAuth = true;
-//    res.send({loggedIn: true});
+
 });
 
-// app.get("/dashboard", isAuth, (req, res) => {
-//     console.log(req.session.isAuth);
-//     res.render("front-end/src/Dashboard");
-// });
 
 app.use('/logout', (req, res) => {
     req.session.destroy((err) =>{

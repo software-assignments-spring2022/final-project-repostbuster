@@ -5,11 +5,7 @@ import {useNavigate, Navigate } from 'react-router';
 const  Header = ({setUser, user}) => {
     const [session, setSession] = React.useState(null);
     const navigate = useNavigate();
-    // useEffect(() => {
-    //     setSession = localStorage.getItem("login");
-
-    // }, [session])
-
+    
     const handleLogout = () => {
         localStorage.removeItem('token');
         setUser(null);

@@ -1,9 +1,11 @@
 import "./styles.css";
 import axios from 'axios';
 import React from "react";
+import {useNavigate, Navigate } from 'react-router';
 
 const Registration = () =>{
 
+    const navigate = useNavigate();
     const [formValue, setformValue] = React.useState({
         email: '',
         password: '',
@@ -29,7 +31,8 @@ const Registration = () =>{
                 'Content-Type': 'application/json'
             }
           }).then((res) => {
-                console.log(res);
+                console.log(res)
+                navigate('/login');
                 
             }).catch((error) => {
                 console.log(error);
