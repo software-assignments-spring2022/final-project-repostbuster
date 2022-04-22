@@ -98,13 +98,14 @@ code {
     left:0;
 }
 
-.navbar-brand {
-    font-weight: bold;
+.navbar-inverse .navbar-brand {
     color: #1A3C40;
+    font-weight: bold;
 }
 
+
 .navbar-inverse {
-    font: #1A3C40;
+    color: #1A3C40;
 }
 
 .navbar-header {
