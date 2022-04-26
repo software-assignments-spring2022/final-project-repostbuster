@@ -273,29 +273,23 @@ async function detectWeb(fileName) {
 
 // Use Express to store the Image Search results
 // Riley Valls
+
+//import testData from './GoogleCloudAPI/exampleOutput.json';
 app.get("/results", (req, res) => {
-    const body = [
-        {
-            source: "Holdlamis",
-            date: "05/15/2021",
-            link: "ucoz.com",
-        },
-        {
-            source: "Namfix",
-            date: "03/22/2021",
-            link: "patch.com",
-        },
-        {
-            source: "Alphazap",
-            date: "01/21/2022",
-            link: "soup.io",
-        },
-        {
-            source: "Namfix",
-            date: "02/16/2022",
-            link: "feedburner.com",
-        },
-    ];
+
+    // get json from google api
+
+    // parse to array -> "pagesWithMatchingImages"
+
+    /*
+    fetch(`$'./GoogleCloudAPI/exampleOutput.json'.json`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    */
+
+    var testData = require('./GoogleCloudAPI/exampleOutput.json');
+    var body = testData.responses[0].webDetection.pagesWithMatchingImages
+
     // send the response as JSON text to the client
 
     res.json(body);

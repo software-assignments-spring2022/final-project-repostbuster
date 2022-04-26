@@ -21,7 +21,7 @@
 .result {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 10px;
     padding-left: 5px;
     /* Add shadows to create the "card" effect */
