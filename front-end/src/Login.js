@@ -33,8 +33,8 @@ const Login = ({setUser}) =>{
                 'Content-Type': 'application/json'
             }
           }).then((res) => {
-                localStorage.setItem('token', res.data.accessToken);
-                setUser(localStorage.getItem('token'));
+                localStorage.setItem('user', JSON.stringify(res.data));
+                setUser(JSON.parse(localStorage.getItem('user')));
                 setfireRedirect(true);
                 
             }).catch((error) => {

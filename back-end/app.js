@@ -16,6 +16,7 @@ const session = require('express-session');
 const jwt = require('jsonwebtoken');
 const MongoDBSession = require('connect-mongodb-session')(session);
 const mongoose = require('mongoose');
+const User = require("./User");
 const mongoURI = "mongodb://localhost:27017/sessions";
 
 mongoose
@@ -113,7 +114,11 @@ app.post("/register", async (req, res) => {
     res.send(200);
 });
 
-
+app.get("/dashboard", async (req, res) => {
+    const username = req.param('username');
+    let user = await UserModel.findOne({username});
+    return res.send(JSON.stringify(user));
+});
 
 //login
 app.post("/login", async (req, res) => { 
@@ -130,7 +135,7 @@ app.post("/login", async (req, res) => {
    }
 
    const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET);
-   res.json({accessToken: accessToken});
+   res.json({name: user.username , accessToken: accessToken});
 
 });
 

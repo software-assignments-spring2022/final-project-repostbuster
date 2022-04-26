@@ -1,22 +1,35 @@
 import axios from "axios";
+import React from "react";
 import "./dashboardStyle.css"
+import {useNavigate, Navigate } from 'react-router';
+
 
 const Dashboard = () => {
-    [authenticated, setAuthenticated] = React.useState(false);
+    // [authenticated, setAuthenticated] = React.useState(false);
+    const [info, setInfo] = React.useState(null);
 
     React.useEffect(() => {
-        axios.post("http://localhost:3001/login", { headers: { 'token': localStorage.getItem('token') }})
-        .then((res) => {
-            setAuthenticated(true);
-        })
-        .catch((err) => {
-            setAuthenticated(false);
-        })
+        if(!info){
+            axios.get("http://localhost:3001/dashboard", { 
+                params: {
+                    username: JSON.parse(localStorage.getItem('user')).name,
+                },
+                headers: { 
+                    'token': JSON.parse(localStorage.getItem('user')).token,
+                }
+            })
+            .then((res) => {
+                console.log(res.data);
+                setInfo(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        }    
     });
+
     return (
-        
             <div class="container">
-                {authenticated ? (
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-10 col-xl-8 mx-auto">
                         <h2 class="h3 mb-4 page-title">Settings</h2>
@@ -36,7 +49,7 @@ const Dashboard = () => {
                                     <div class="col">
                                         <div class="row align-items-center">
                                             <div class="col-md-7">
-                                                <h4 class="mb-1">Brown, Asher</h4>
+                                                <h4 class="mb-1">{info ? info.username: "John Doe"}</h4>
                                                 <p class="small mb-3"><span class="badge badge-dark">New York, USA</span></p>
                                             </div>
                                         </div>
@@ -123,7 +136,6 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                ) : <Navigate to="/login" push={true}/>})
             </div> )
         
   };
