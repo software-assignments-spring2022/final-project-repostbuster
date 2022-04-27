@@ -10,42 +10,39 @@ require("dotenv").config({ silent: true }); // load environmental variables from
 const morgan = require("morgan"); // middleware for nice logging of incoming HTTP requests
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const bcrypt = require('bcryptjs');
-const UserModel = require('./User');
-const session = require('express-session');
-const jwt = require('jsonwebtoken');
-const MongoDBSession = require('connect-mongodb-session')(session);
-const mongoose = require('mongoose');
+const bcrypt = require("bcryptjs");
+const UserModel = require("./User");
+const session = require("express-session");
+const jwt = require("jsonwebtoken");
+const MongoDBSession = require("connect-mongodb-session")(session);
+const mongoose = require("mongoose");
 const mongoURI = "mongodb://localhost:27017/sessions";
 
-mongoose
-    .connect(mongoURI).then((res) => {
-        console.log("MongoDB Connected");
-    });
+mongoose.connect(mongoURI).then((res) => {
+    console.log("MongoDB Connected");
+});
 
 const store = new MongoDBSession({
-    uri:mongoURI,
-    collection:"UserSessions"
+    uri: mongoURI,
+    collection: "UserSessions",
 });
 
 const authenticate = (req, res, next) => {
-    const header = req.header['authorization'];
-    const token = header.split(' ')[1];
-    if(token == null) return res.sendStatus(401);
+    const header = req.header["authorization"];
+    const token = header.split(" ")[1];
+    if (token == null) return res.sendStatus(401);
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if(err) return res.sendStatus(403);
+        if (err) return res.sendStatus(403);
         req.user = user;
         next();
     });
 };
 
 const isAuth = (req, res, next) => {
-    if(req.session.isAuth) {
+    if (req.session.isAuth) {
         next();
-    }
-    else {
-
+    } else {
         res.redirect("http://localhost:4000/login");
     }
 };
@@ -79,10 +76,10 @@ app.use(
 
 app.use(
     session({
-        secret: 'key',
+        secret: "key",
         resave: false,
-        saveUninitialized:false,
-        store:store,
+        saveUninitialized: false,
+        store: store,
     })
 );
 
@@ -92,11 +89,11 @@ app.get("/home", (req, res) => {
 
 //register
 app.post("/register", async (req, res) => {
-    const {username, email, password} = req.body;
+    const { username, email, password } = req.body;
 
-    let user = await UserModel.findOne({email});
-     
-    if(user){
+    let user = await UserModel.findOne({ email });
+
+    if (user) {
         return res.send(400);
     }
 
@@ -113,39 +110,31 @@ app.post("/register", async (req, res) => {
     res.send(200);
 });
 
-
-
 //login
-app.post("/login", async (req, res) => { 
-   const {email, password} = req.body;
-   const user = await UserModel.findOne({email});
-   if(!user){
-       return res.send(400);
-   }
+app.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+        return res.send(400);
+    }
 
-   const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.password);
 
-   if(!isMatch){
-       return res.send(400);
-   }
+    if (!isMatch) {
+        return res.send(400);
+    }
 
-   const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET);
-   res.json({accessToken: accessToken});
-
+    const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET);
+    res.json({ accessToken: accessToken });
 });
 
-
-app.use('/logout', (req, res) => {
-    req.session.destroy((err) =>{
-        if(err) throw err;
+app.use("/logout", (req, res) => {
+    req.session.destroy((err) => {
+        if (err) throw err;
         req.session.isAuth = false;
         res.send(200);
     });
 });
-
-
-// export the express app we created to make it available to other modules
-module.exports = app; // CommonJS export style!
 
 // Dont forget to create unit tests for your respective functions!
 
@@ -271,7 +260,6 @@ async function detectWeb(fileName) {
 
 //import testData from './GoogleCloudAPI/exampleOutput.json';
 app.get("/results", (req, res) => {
-
     // get json from google api
 
     // parse to array -> "pagesWithMatchingImages"
@@ -282,8 +270,8 @@ app.get("/results", (req, res) => {
     .then(data => console.log(data))
     */
 
-    var testData = require('./GoogleCloudAPI/exampleOutput.json');
-    var body = testData.responses[0].webDetection.pagesWithMatchingImages
+    var testData = require("./GoogleCloudAPI/exampleOutput.json");
+    var body = testData.responses[0].webDetection.pagesWithMatchingImages;
 
     // send the response as JSON text to the client
 
@@ -294,7 +282,6 @@ app.get("/results", (req, res) => {
 // Duardo Akerele
 
 //create an account
-
 
 // export the express app we created to make it available to other modules
 module.exports = app; // CommonJS export style!

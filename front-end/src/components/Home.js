@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import axios from "axios";
-import "../styles.css"
+import "../styles.css";
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = (props) => {
@@ -112,6 +112,7 @@ const Home = (props) => {
                 <button onClick={handleClick}>Upload!</button>
             </div>
 
+            {/* 3001??????????????????????????????????/ */}
             <form action="http://localhost:3001/home" method="POST">
                 <input type="file" name="file" onChange={handleFileInput} />
                 <input type="submit" value="Submit!!!" />
