@@ -5,7 +5,7 @@ const ourTechnology = () => {
     return (
         <div className="content-wrapper">
             <section>
-                <h1>The Google Images API</h1>
+                <h1>The Google Images API hi</h1>
                 <p>
                     How does our code work? Our code is powered by the Google Programmable Search Engine API. This
                 functions similarly to the Google Search by Image API, which allows users to drag and drop an image
