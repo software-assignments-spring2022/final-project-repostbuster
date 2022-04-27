@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
-import "./Home.css";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import axios from "axios";
+import "../styles.css"
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = (props) => {
@@ -90,7 +90,7 @@ const Home = (props) => {
         .finally(() => {
             // The response has been received... so remove loading icon
             setLoad(true);
-        }); 
+        });
         -------------------------------------------*/
 
     return (
