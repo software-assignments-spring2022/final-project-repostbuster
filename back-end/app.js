@@ -10,6 +10,45 @@ require("dotenv").config({ silent: true }); // load environmental variables from
 const morgan = require("morgan"); // middleware for nice logging of incoming HTTP requests
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const bcrypt = require('bcryptjs');
+const UserModel = require('./User');
+const session = require('express-session');
+const jwt = require('jsonwebtoken');
+const MongoDBSession = require('connect-mongodb-session')(session);
+const mongoose = require('mongoose');
+const mongoURI = "mongodb://localhost:27017/sessions";
+
+mongoose
+    .connect(mongoURI).then((res) => {
+        console.log("MongoDB Connected");
+    });
+
+const store = new MongoDBSession({
+    uri:mongoURI,
+    collection:"UserSessions"
+});
+
+const authenticate = (req, res, next) => {
+    const header = req.header['authorization'];
+    const token = header.split(' ')[1];
+    if(token == null) return res.sendStatus(401);
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if(err) return res.sendStatus(403);
+        req.user = user;
+        next();
+    });
+};
+
+const isAuth = (req, res, next) => {
+    if(req.session.isAuth) {
+        next();
+    }
+    else {
+
+        res.redirect("http://localhost:4000/login");
+    }
+};
 
 // use the morgan middleware to log all incoming http requests
 app.use(morgan("dev", { skip: (req, res) => process.env.NODE_ENV === "test" })); // log all incoming requests, except when in unit test mode.
@@ -38,9 +77,72 @@ app.use(
     })
 );
 
+app.use(
+    session({
+        secret: 'key',
+        resave: false,
+        saveUninitialized:false,
+        store:store,
+    })
+);
+
 app.get("/home", (req, res) => {
     res.send("Welcome to RepostBuster!");
 });
+
+//register
+app.post("/register", async (req, res) => {
+    const {username, email, password} = req.body;
+
+    let user = await UserModel.findOne({email});
+     
+    if(user){
+        return res.send(400);
+    }
+
+    const hashedPass = await bcrypt.hash(password, 12);
+
+    user = new UserModel({
+        username,
+        email,
+        password: hashedPass,
+    });
+
+    await user.save();
+
+    res.send(200);
+});
+
+
+
+//login
+app.post("/login", async (req, res) => { 
+   const {email, password} = req.body;
+   const user = await UserModel.findOne({email});
+   if(!user){
+       return res.send(400);
+   }
+
+   const isMatch = await bcrypt.compare(password, user.password);
+
+   if(!isMatch){
+       return res.send(400);
+   }
+
+   const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET);
+   res.json({accessToken: accessToken});
+
+});
+
+
+app.use('/logout', (req, res) => {
+    req.session.destroy((err) =>{
+        if(err) throw err;
+        req.session.isAuth = false;
+        res.send(200);
+    });
+});
+
 
 // export the express app we created to make it available to other modules
 module.exports = app; // CommonJS export style!
@@ -166,29 +268,23 @@ async function detectWeb(fileName) {
 
 // Use Express to store the Image Search results
 // Riley Valls
+
+//import testData from './GoogleCloudAPI/exampleOutput.json';
 app.get("/results", (req, res) => {
-    const body = [
-        {
-            source: "Holdlamis",
-            date: "05/15/2021",
-            link: "ucoz.com",
-        },
-        {
-            source: "Namfix",
-            date: "03/22/2021",
-            link: "patch.com",
-        },
-        {
-            source: "Alphazap",
-            date: "01/21/2022",
-            link: "soup.io",
-        },
-        {
-            source: "Namfix",
-            date: "02/16/2022",
-            link: "feedburner.com",
-        },
-    ];
+
+    // get json from google api
+
+    // parse to array -> "pagesWithMatchingImages"
+
+    /*
+    fetch(`$'./GoogleCloudAPI/exampleOutput.json'.json`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    */
+
+    var testData = require('./GoogleCloudAPI/exampleOutput.json');
+    var body = testData.responses[0].webDetection.pagesWithMatchingImages
+
     // send the response as JSON text to the client
 
     res.json(body);
@@ -198,32 +294,7 @@ app.get("/results", (req, res) => {
 // Duardo Akerele
 
 //create an account
-app.post("/register", (req, res) => {
-    try {
-        const username = req.body.email;
-        // need to salt and has password field
-        const password = req.body.password;
-        console.log(req.body);
-        res.send("SUCCESS");
-        //pass fields into database
-    } catch (err) {
-        res.send("FAILED " + err);
-    }
-});
 
-//login
-app.post("/login", (req, res) => {
-    try {
-        const username = req.body.email;
-        const password = req.body.password;
-        //check username & pass agaisnt database entry
-        console.log(req.body);
-        //if match return success page
-        res.send("SUCCESS");
-    } catch (err) {
-        res.send("FAILED " + err);
-    }
-});
 
 // export the express app we created to make it available to other modules
 module.exports = app; // CommonJS export style!

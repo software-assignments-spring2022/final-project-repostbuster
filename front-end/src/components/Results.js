@@ -3,36 +3,37 @@ import { LoremPicsum } from "react-lorem-picsum";
 import Pagination from "./Pagination";
 import Result from "./Result";
 import Download from "./Download";
-import axios from 'axios';
-import "../styles.css"
-
+import axios from "axios";
+import "../styles.css";
 
 function Results() {
+    fetch("http://localhost:3000/results")
+        .then((response) => response.json())
+        .then(function (result) {
+            // remove prev items
+            results = [];
 
-    fetch('http://localhost:3000/results')
-    .then(response => response.json())
-    .then(function (result) {
-        // remove prev items
-        results = []
+            // add new items
+            for (var i = 0; i < result.length; i++) {
+                results.push(result[i]);
+            }
 
-        // add new items
-        for (var i = 0; i < result.length; i++) {
-          results.push(result[i])
-        }
-    })
-    .catch(error => console.log('error', error));
+            // sort by score (default) (may not have anything to sort by)
+            //results.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
+        })
+        .catch((error) => console.log("error", error));
 
     var [results, setResults] = useState([]);
-    const [error, setError] = useState('');
+    const [error, setError] = useState("");
 
     useEffect(() => {
-      fetch('http://localhost:3000/results')
-        .then((response) => {
-          if (response.ok) return response.json();
-          throw new Error('something went wrong while requesting posts');
-        })
-        .then((results) => setResults(results))
-        .catch((error) => setError(error.message));
+        fetch("http://localhost:3000/results")
+            .then((response) => {
+                if (response.ok) return response.json();
+                throw new Error("something went wrong while requesting posts");
+            })
+            .then((results) => setResults(results))
+            .catch((error) => setError(error.message));
     }, []);
 
     if (error) return <h1>{error}</h1>;
@@ -119,36 +120,32 @@ function Results() {
             </div>
 
             <div className="result-container">
-              {results.length > 0 ? (
-                <>
-                  <Pagination
-                    data={results}
-                    RenderComponent={Result}
-                    title={results.length + " Matches Found"}
-                    pageLimit={5}
-                    dataLimit={2}
-                  />
-                </>
-              ) : (
-              <h1>No Posts to display</h1>
-              )}
+                {results.length > 0 ? (
+                    <>
+                        <Pagination
+                            data={results}
+                            RenderComponent={Result}
+                            title={results.length + " Matches Found"}
+                            pageLimit={5}
+                            dataLimit={2}
+                        />
+                    </>
+                ) : (
+                    <h1>No Posts to display</h1>
+                )}
             </div>
 
             <div className="download-button">
-              {results.length > 0 ? (
-                <>
-                  <Download
-                    data={results}
-                  />
-                </>
-              ) : (
-              <h1>No Posts to display</h1>
-              )}
+                {results.length > 0 ? (
+                    <>
+                        <Download data={results} />
+                    </>
+                ) : (
+                    <h1>No Posts to display</h1>
+                )}
             </div>
-
-
         </div>
-    )
+    );
 }
 
 export default Results;
