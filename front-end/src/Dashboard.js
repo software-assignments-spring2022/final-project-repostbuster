@@ -9,14 +9,9 @@ const Dashboard = () => {
     const [info, setInfo] = React.useState(null);
 
     React.useEffect(() => {
-        if(!info){
-            axios.get("http://localhost:3001/dashboard", { 
-                params: {
-                    username: JSON.parse(localStorage.getItem('user')).name,
-                },
-                headers: { 
-                    'token': JSON.parse(localStorage.getItem('user')).token,
-                }
+        axios
+            .post("http://localhost:3000/login", {
+                headers: { token: localStorage.getItem("token") },
             })
             .then((res) => {
                 console.log(res.data);
@@ -29,12 +24,7 @@ const Dashboard = () => {
     });
 
     return (
-<<<<<<< HEAD
-        <div class="container">
-            {authenticated ? (
-=======
             <div class="container">
->>>>>>> master
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-10 col-xl-8 mx-auto">
                         <h2 class="h3 mb-4 page-title">Settings</h2>
@@ -72,19 +62,8 @@ const Dashboard = () => {
                                     <div class="col">
                                         <div class="row align-items-center">
                                             <div class="col-md-7">
-<<<<<<< HEAD
-                                                <h4 class="mb-1">
-                                                    Brown, Asher
-                                                </h4>
-                                                <p class="small mb-3">
-                                                    <span class="badge badge-dark">
-                                                        New York, USA
-                                                    </span>
-                                                </p>
-=======
                                                 <h4 class="mb-1">{info ? info.username: "John Doe"}</h4>
                                                 <p class="small mb-3"><span class="badge badge-dark">New York, USA</span></p>
->>>>>>> master
                                             </div>
                                         </div>
                                         <div class="row mb-4">
@@ -252,18 +231,8 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-            ) : (
-                <Navigate to="/login" push={true} />
-            )}
-            )
-        </div>
-    );
-};
-=======
             </div> )
         
   };
->>>>>>> master
 
 export default Dashboard;
