@@ -48,7 +48,7 @@ function App() {
 
           <Route name="login" path="/login" element={<Login setUser={setUser}/>}/>
           <Route name="register" path="/register" element={<Registration />}/>
-          <Route name="dashboard" path="/dashboard" element = {<RequireAuth> <Dashboard/> </RequireAuth>}/>
+          <Route name="dashboard" path="/dashboard" element = {<RequireAuth> <Dashboard setUser={setUser}/> </RequireAuth>}/>
         </Routes>
       </BrowserRouter>
     </div>

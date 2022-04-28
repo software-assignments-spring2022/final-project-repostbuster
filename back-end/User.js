@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     username: {
         type:String,
-        required:true
+        required:true,
+        unique : true,
     },
     email: {
         type: String,
@@ -15,6 +16,19 @@ const userSchema = new Schema({
         type:String,
         required:true,
     }
+
+    
 });
 
-module.exports = mongoose.model('User', userSchema);
+const urlSchema = new Schema({
+    url: {
+        type:String,
+        required:true
+    },
+    user: [{ type: Schema.Types.ObjectId, ref: 'User', required: true}]
+});
+
+module.exports = {
+    UserModel: mongoose.model('User', userSchema), 
+    UrlModel: mongoose.model('Url', urlSchema),
+}
