@@ -1,14 +1,23 @@
 import React from "react";
 import "../styles.css";
 import { useEffect } from "react";
-import { useNavigate, Navigate } from "react-router";
+import {useNavigate, Navigate } from 'react-router';
+import './header.css'
 
 const Header = ({ setUser, user }) => {
     const [session, setSession] = React.useState(null);
+    const [name, setName] = React.useState('');
+    React.useEffect(() =>{
+        if(localStorage.getItem('user')){
+            setName((JSON.parse(localStorage.getItem('user')).name));
+        }
+    })
+
+
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        localStorage.removeItem('user');
         setUser(null);
         navigate("/login");
     };
@@ -59,17 +68,16 @@ const Header = ({ setUser, user }) => {
                                         <a href="/howItWorks">How it Works</a>
                                     </li>
                                 </ul>
-                            </li>
+                                </li>
+                            <li><a href="/our-tech">Our Technology</a></li>
                             <li>
-                                <a href="/our-tech">Our Technology</a>
-                            </li>
-                            <li>
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={handleLogout}
-                                >
-                                    Logout
-                                </button>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropbtn">{name}</button>
+                                    <div class="dropdown-content">
+                                        <a href="/dashboard">Dashboard</a>
+                                        <a onClick={handleLogout}>Logout</a>
+                                    </div>
+                                </div>                        
                             </li>
                         </ul>
                     ) : (
