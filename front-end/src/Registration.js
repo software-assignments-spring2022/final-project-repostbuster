@@ -26,7 +26,7 @@ const Registration = () =>{
         // store the states in the form data
         const data = {...formValue};
           // make axios post request
-        await axios.post("http://localhost:3001/register", data, {
+        await axios.post("http://localhost:3000/register", data, {
             headers: {
                 'Content-Type': 'application/json'
             }
