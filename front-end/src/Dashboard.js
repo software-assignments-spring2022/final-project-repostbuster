@@ -1,26 +1,40 @@
 import axios from "axios";
-import { useNavigate, Navigate } from "react-router";
-import "./dashboardStyle.css";
 import React from "react";
+import "./dashboardStyle.css"
+import {useNavigate, Navigate } from 'react-router';
+
 
 const Dashboard = () => {
-    const [authenticated, setAuthenticated] = React.useState(false);
+    // [authenticated, setAuthenticated] = React.useState(false);
+    const [info, setInfo] = React.useState(null);
 
     React.useEffect(() => {
-        axios
-            .post("http://localhost:3001/login", {
-                headers: { token: localStorage.getItem("token") },
+        if(!info){
+            axios.get("http://localhost:3001/dashboard", { 
+                params: {
+                    username: JSON.parse(localStorage.getItem('user')).name,
+                },
+                headers: { 
+                    'token': JSON.parse(localStorage.getItem('user')).token,
+                }
             })
             .then((res) => {
-                setAuthenticated(true);
+                console.log(res.data);
+                setInfo(res.data);
             })
             .catch((err) => {
-                setAuthenticated(false);
-            });
+                console.log(err);
+            })
+        }    
     });
+
     return (
+<<<<<<< HEAD
         <div class="container">
             {authenticated ? (
+=======
+            <div class="container">
+>>>>>>> master
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-10 col-xl-8 mx-auto">
                         <h2 class="h3 mb-4 page-title">Settings</h2>
@@ -58,6 +72,7 @@ const Dashboard = () => {
                                     <div class="col">
                                         <div class="row align-items-center">
                                             <div class="col-md-7">
+<<<<<<< HEAD
                                                 <h4 class="mb-1">
                                                     Brown, Asher
                                                 </h4>
@@ -66,6 +81,10 @@ const Dashboard = () => {
                                                         New York, USA
                                                     </span>
                                                 </p>
+=======
+                                                <h4 class="mb-1">{info ? info.username: "John Doe"}</h4>
+                                                <p class="small mb-3"><span class="badge badge-dark">New York, USA</span></p>
+>>>>>>> master
                                             </div>
                                         </div>
                                         <div class="row mb-4">
@@ -233,6 +252,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
             ) : (
                 <Navigate to="/login" push={true} />
             )}
@@ -240,5 +260,10 @@ const Dashboard = () => {
         </div>
     );
 };
+=======
+            </div> )
+        
+  };
+>>>>>>> master
 
 export default Dashboard;

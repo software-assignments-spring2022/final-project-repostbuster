@@ -10,12 +10,13 @@ require("dotenv").config({ silent: true }); // load environmental variables from
 const morgan = require("morgan"); // middleware for nice logging of incoming HTTP requests
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const bcrypt = require("bcryptjs");
-const UserModel = require("./User");
-const session = require("express-session");
-const jwt = require("jsonwebtoken");
-const MongoDBSession = require("connect-mongodb-session")(session);
-const mongoose = require("mongoose");
+const bcrypt = require('bcryptjs');
+const UserModel = require('./User');
+const session = require('express-session');
+const jwt = require('jsonwebtoken');
+const MongoDBSession = require('connect-mongodb-session')(session);
+const mongoose = require('mongoose');
+const User = require("./User");
 const mongoURI = "mongodb://localhost:27017/sessions";
 
 mongoose.connect(mongoURI).then((res) => {
@@ -110,6 +111,15 @@ app.post("/register", async (req, res) => {
     res.send(200);
 });
 
+<<<<<<< HEAD
+=======
+app.get("/dashboard", async (req, res) => {
+    const username = req.param('username');
+    let user = await UserModel.findOne({username});
+    return res.send(JSON.stringify(user));
+});
+
+>>>>>>> master
 //login
 app.post("/login", async (req, res) => {
     const { email, password } = req.body;
@@ -120,9 +130,18 @@ app.post("/login", async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, user.password);
 
+<<<<<<< HEAD
     if (!isMatch) {
         return res.send(400);
     }
+=======
+   if(!isMatch){
+       return res.send(400);
+   }
+
+   const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET);
+   res.json({name: user.username , accessToken: accessToken});
+>>>>>>> master
 
     const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET);
     res.json({ accessToken: accessToken });
