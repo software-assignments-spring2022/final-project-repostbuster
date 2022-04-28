@@ -22,13 +22,9 @@ const Login = ({setUser}) =>{
       const handleSubmit = async (event) => {
         event.preventDefault();
         // store the states in the form data
-        const loginFormData = new FormData();
-        loginFormData.append("email", formValue.email)
-        loginFormData.append("password", formValue.password)
         const data = {...formValue};
-        console.log(loginFormData.getAll("email"));
           // make axios post request
-        await axios.post("http://localhost:3001/login", data, {
+        await axios.post("http://localhost:3000/login", data, {
             headers: {
                 'Content-Type': 'application/json'
             }
