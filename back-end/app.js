@@ -9,6 +9,7 @@ const axios = require("axios"); // middleware for making requests to APIs
 require("dotenv").config({ silent: true }); // load environmental variables from a hidden file named .env
 const morgan = require("morgan"); // middleware for nice logging of incoming HTTP requests
 const cors = require("cors");
+const fs = require('fs');
 const bodyParser = require("body-parser");
 const bcrypt = require('bcryptjs');
 const {UserModel} = require('./User');
@@ -19,13 +20,92 @@ const MongoDBSession = require('connect-mongodb-session')(session);
 const mongoose = require('mongoose');
 const User = require("./User");
 const { domain } = require("process");
-const mongoURI = "mongodb://localhost:27017/sessions";
+//const mongoURI = "mongodb://localhost:27017/sessions";
 
+/*
 mongoose
     .connect(mongoURI).then((res) => {
         console.log("MongoDB Connected");
     });
+*/
 
+/*---------------------------*/
+
+mongoose.connect(process.env.MONGO_URL,
+    { useNewUrlParser: true, useUnifiedTopology: true }, err => {
+        console.log('connected')
+    });
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+// Set EJS as templating engine 
+app.set("view engine", "ejs");
+
+
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        // default root folder of the app
+        cb(null, 'public/'); // OR /public/images
+    },
+    filename: (req, file, cb) => {
+        // take apart the uploaded file's name... create a new one based on it
+        // return extension of path.... from last '.' to end
+        const extension = path.extname(file.originalname); 
+        
+        // extracts filename from fully qualified path... 2nd arg --> extension to remove from result
+        const basenameWithoutExtension = path.basename(
+            file.originalname,
+            extension
+        ); 
+        
+        // create a new file name with a timestamp in the middle
+        const newName = `${basenameWithoutExtension}-${Date.now()}${extension}`;
+
+        // multer uses new filename for the uploaded file
+        cb(null, newName);
+    }
+});
+  
+var upload = multer({ storage: storage });
+
+var imgModel = require('./Image.js');
+/*
+app.get('/home', (req, res) => {
+    imgModel.find({}, (err, items) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('An error occurred', err);
+        }
+        else {
+            res.render('home', { items: items });
+        }
+    });
+});
+*/
+app.post('/home', upload.single('image'), (req, res, next) => {
+  
+    var obj = {
+        name: req.body.name,
+        desc: req.body.desc,
+        img: {
+            data: fs.readFileSync(path.join(__dirname + '/public/' + req.file.filename)),
+            contentType: 'image/png'
+        }
+    }
+    console.log(obj);
+    imgModel.create(obj, (err, item) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            // item.save();
+            res.redirect('/');
+        }
+    });
+});
+
+/*--------------------------------------------*/
 
 const authenticate = (req, res, next) => {
     const token = req.get('token');
@@ -76,7 +156,7 @@ app.use(
 );
 
 
-app.get("/home", (req, res) => {
+app.get("http://localhost:4000/home", (req, res) => {
     res.send("Welcome to RepostBuster!");
 });
 
@@ -180,6 +260,7 @@ module.exports = app; // CommonJS export style!
 }); */
 
 // enable file uploads saved to disk in a directory named "public"
+/*
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         // default root folder of the app
@@ -203,7 +284,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 // .single("image"); // Same "image" as data.append("image", event.target.files[0]);
-
+*/
 app.post("/image-upload", upload.array("image"), (req, res) => {
     /* -------------------------------------------- Attempt 1
     upload(req, res, (err) => {
@@ -229,7 +310,7 @@ app.post("/image-upload", upload.array("image"), (req, res) => {
 
 // Reverse Image Search API is called once user clicks the submit button on the Search Settings Page.
 // Camilo Villavicencio
-
+/*
 async function detectWeb(fileName) {
     // [START vision_web_detection]
 
@@ -287,7 +368,7 @@ async function detectWeb(fileName) {
     console.log("GOOGLE API LOADED");
     // [END vision_web_detection]
 }
-
+*/
 // Use Express to store the Image Search results
 // Riley Valls
 

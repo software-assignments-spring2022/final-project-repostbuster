@@ -9,7 +9,7 @@ test("good response", () => {
   axios.post.mockImplementation((url) => {
     const loginData = { name: 'test' , password: 'testpass'};
 
-    if(url == "http://localhost:3001/login", data){
+    if(url == "http://localhost:3000/login", data){
         return Promise.resolve({ data: {
             token: 'testToken'
         }});

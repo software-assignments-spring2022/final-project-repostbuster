@@ -107,28 +107,32 @@ const Home = (props) => {
                 </Button>
             </div>
 
-            <div id="ImageUploadButton">
-                <input type="file" onChange={handleFileInput} />
-                <button onClick={handleClick}>Upload!</button>
-            </div>
-
-            <form action="http://localhost:3001/home" method="POST">
-                <input type="file" name="file" onChange={handleFileInput} />
-                <input type="submit" value="Submit!!!" />
+            <form action="http://localhost:3000/home" method="POST" enctype="multipart/form-data">
+                <div>
+                    <label for="name">Image Title</label>
+                    <input type="text" id="name"name="name" required></input>
+                </div>
+                <div>
+                    <label for="desc">Image Description</label>
+                    <textarea id="desc" name="desc" rows="2" 
+                             required>
+                    </textarea>
+                </div>
+                <div>
+                    <label for="image">Upload Image</label>
+                    <input type="file" id="image" 
+                        name="image" required></input>
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
             </form>
 
-            <InputGroup className="mb-3">
-                <FormControl
-                    aria-label="Example text with button addon"
-                    aria-describedby="basic-addon1"
-                    placeholder="Enter Image URL..."
-                />
-
-                <Button variant="outline-secondary" id="button-addon1">
-                    Search
-                </Button>
-            </InputGroup>
+            <h1>Uploaded Images</h1>
+        
         </div>
+            
+
     );
 };
 
