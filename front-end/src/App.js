@@ -42,13 +42,24 @@ function App() {
             <BrowserRouter>
                 <Header setUser={setUser} user={user} />
                 <Routes>
-                    <Route path="/about" element={<About />} />
-                    <Route path="/our-tech" element={<Technology />} />
-                    <Route path="/upload" element={<UploadImage />} />
-
+                    <Route path="/" element={<Home />} />
                     <Route path="/home" element={<Home />} />
-                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/about" element={<About />} />
+                    {/* TODO: need help center */}
+                    <Route path="/our-tech" element={<Technology />} />
+                    <Route
+                        name="login"
+                        path="/login"
+                        element={<Login setUser={setUser} />}
+                    />
+                    <Route
+                        name="register"
+                        path="/register"
+                        element={<Registration />}
+                    />
 
+                    <Route path="/upload" element={<UploadImage />} />
+                    <Route path="/faq" element={<FAQ />} />
                     <Route path="/results" element={<Results />} />
                     <Route path="/uploadimage" element={<UploadImage />} />
                     <Route
@@ -62,17 +73,7 @@ function App() {
                         element={<HowItWorks />}
                     />
 
-                    <Route
-                        name="login"
-                        path="/login"
-                        element={<Login setUser={setUser} />}
-                    />
-                    <Route
-                        name="register"
-                        path="/register"
-                        element={<Registration />}
-                    />
-                    {/* access deny */}
+                    {/* access deny here */}
                     <Route
                         name="dashboard"
                         path="/dashboard"

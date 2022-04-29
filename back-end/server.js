@@ -2,11 +2,12 @@
 
 // import the express app
 const server = require("./app");
+require("dotenv").config({ silent: true }); // load environmental variables from a hidden file named .env
 //const express = require("express");
 //const app = express();
 
 // which port to listen for HTTP(S) requests
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const listener = server.listen(port, () => {
     console.log("listening on " + port);

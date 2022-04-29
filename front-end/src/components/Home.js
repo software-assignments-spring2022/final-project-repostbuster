@@ -23,26 +23,62 @@ const Home = (props) => {
         //props.handleFile(fileUploaded);
     }; */
 
+    /*  --------------------------------------------------- Apr.27
     const [image, setImage] = useState(null);
-    /* const [error, setError] = useState("");
-    const [loaded, setLoad] = useState(false);
-    const [description, setDescription] = useState("");
-    const [file, setFile] = useState(); */
+    // const [error, setError] = useState("");
+    // const [loaded, setLoad] = useState(false);
+    // const [file, setFile] = useState(); 
 
     const handleClick = () => {
         axios.post("http://localhost:3000/image-upload", image).then((res) => {
             console.log("Axios response ", res);
         });
     };
-
+    
     const handleFileInput = (e) => {
         console.log("handleFileInput working");
         console.log(e.target.files[0]);
+        
+        const formData = new FormData();
+        
+        formData.append("image", e.target.files[0], e.target.files[0].name);
+        setImage(formData);
+    }; 
+    */
+
+    // Data sending to server: name & photo (only be png, jpg, or jpeg)
+    const [newUser, setNewUser] = useState({
+        name: "",
+        photo: "",
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefualt();
+
+        console.log("File upload from REACT");
 
         const formData = new FormData();
 
-        formData.append("image", e.target.files[0], e.target.files[0].name);
-        setImage(formData);
+        formData.append("photo", newUser.photo);
+        formData.append("name", newUser.name);
+
+        axios
+            .post("http://localhost:3000/users/add", formData)
+            .then((res) => {
+                console.log("AXIOS POST res: ", res);
+            })
+            .catch((err) => {
+                console.log("AXIOS post err: ", err);
+            });
+    };
+
+    // ref: https://stackoverflow.com/questions/54150783/react-hooks-usestate-with-object
+    const handleChange = (event) => {
+        setNewUser({ ...newUser, [event.target.name]: event.target.value });
+    };
+
+    const handlePhoto = (event) => {
+        setNewUser({ ...newUser, photo: event.target.files[0] });
     };
 
     /*  -------------------------------------------------- Attempt 2
