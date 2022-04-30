@@ -30,17 +30,19 @@ mongoose
 */
 
 /*---------------------------*/
+app.use('/public', express.static(path.join(__dirname, "/public")));
+
 
 mongoose.connect(process.env.MONGO_URL,
     { useNewUrlParser: true, useUnifiedTopology: true }, err => {
         console.log('connected')
     });
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+//app.use(bodyParser.urlencoded({ extended: false }))
+//app.use(bodyParser.json())
 
 // Set EJS as templating engine 
-app.set("view engine", "ejs");
+//app.set("view engine", "ejs");
 
 
 var storage = multer.diskStorage({
@@ -60,7 +62,9 @@ var storage = multer.diskStorage({
         ); 
         
         // create a new file name with a timestamp in the middle
-        const newName = `${basenameWithoutExtension}-${Date.now()}${extension}`;
+        //const newName = `${basenameWithoutExtension}-${Date.now()}${extension}`;
+
+        const  newName = 'uploaded_image'+`${extension}`;
 
         // multer uses new filename for the uploaded file
         cb(null, newName);
@@ -146,8 +150,8 @@ app.use(bodyParser.urlencoded({ extended: true })); //parser information sent in
 app.use(bodyParser.json()); //body parser use JSON format
 
 // make 'public' directory publicly readable with static content
-const publicPath = path.join(__dirname, "public"); // instead of app.use("/static", express.static("public"));
-app.use(express.static(publicPath));
+//const publicPath = path.join(__dirname, "/public"); // instead of app.use("/static", express.static("public"));
+//app.use(express.static(publicPath));
 
 // reference to upload images
 // app.use("/image-upload", express.static("/public/"));
