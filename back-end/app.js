@@ -70,39 +70,46 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 var imgModel = require('./Image.js');
-/*
+
 app.get('/home', (req, res) => {
+    
     imgModel.find({}, (err, items) => {
         if (err) {
             console.log(err);
             res.status(500).send('An error occurred', err);
         }
         else {
-            res.render('home', { items: items });
+            //location.reload();
+            res.redirect('http://localhost:4000/results');
+
         }
+    
     });
+
 });
-*/
+
 app.post('/home', upload.single('image'), (req, res, next) => {
   
     var obj = {
-        name: req.body.name,
-        desc: req.body.desc,
+
         img: {
             data: fs.readFileSync(path.join(__dirname + '/public/' + req.file.filename)),
             contentType: 'image/png'
         }
     }
     console.log(obj);
+    /*
     imgModel.create(obj, (err, item) => {
         if (err) {
             console.log(err);
         }
         else {
+            console.log(obj);
             // item.save();
-            res.redirect('/');
+            res.send(200);
         }
-    });
+    });*/
+    res.redirect('/home');
 });
 
 /*--------------------------------------------*/
@@ -155,10 +162,6 @@ app.use(
     })
 );
 
-
-app.get("http://localhost:4000/home", (req, res) => {
-    res.send("Welcome to RepostBuster!");
-});
 
 //register
 app.post("/register", async (req, res) => {
