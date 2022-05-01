@@ -73,14 +73,43 @@ function App() {
                         element={<HowItWorks />}
                     />
 
-                    {/* access deny here */}
+                    <Route path="/about" element={<About />} />
+                    <Route path="/our-tech" element={<Technology />} />
+                    <Route path="/upload" element={<UploadImage />} />
+
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/faq" element={<FAQ />} />
+
+                    <Route path="/results" element={<Results />} />
+                    <Route path="/uploadimage" element={<UploadImage />} />
+                    <Route
+                        name="searchSetting"
+                        path="/searchSetting"
+                        element={<SearchSetting />}
+                    />
+                    <Route
+                        name="howItWorks"
+                        path="/HowItWorks"
+                        element={<HowItWorks />}
+                    />
+
+                    <Route
+                        name="login"
+                        path="/login"
+                        element={<Login setUser={setUser} />}
+                    />
+                    <Route
+                        name="register"
+                        path="/register"
+                        element={<Registration />}
+                    />
                     <Route
                         name="dashboard"
                         path="/dashboard"
                         element={
                             <RequireAuth>
                                 {" "}
-                                <Dashboard />{" "}
+                                <Dashboard setUser={setUser} />{" "}
                             </RequireAuth>
                         }
                     />
