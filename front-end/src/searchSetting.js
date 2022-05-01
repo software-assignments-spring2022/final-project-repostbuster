@@ -105,6 +105,8 @@ const SearchSetting = (props) => {
             </a>
             </header>
             
+            <h2>Original Image</h2>
+                <img src ="http://localhost:3000/public/uploaded_image.png" width={175} height={175}/>
 
             <form action="http://localhost:3000/searchSetting" method="POST" enctype="multipart/form-data">
                 <div className="container">
