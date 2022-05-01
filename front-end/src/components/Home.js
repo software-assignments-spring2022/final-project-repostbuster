@@ -3,14 +3,11 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import axios from "axios";
-import "../styles.css"
+import "../styles.css";
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = (props) => {
-
-
     const [image, setImage] = useState(null);
-
 
     const handleClick = () => {
         axios.post("http://localhost:3000/home", image).then((res) => {
@@ -28,7 +25,6 @@ const Home = (props) => {
         setImage(formData);
     };
 
-
     return (
         <div className="homeContent">
             <div>
@@ -43,20 +39,25 @@ const Home = (props) => {
                 </Button>
             </div>
 
-            <form action="http://localhost:3000/home" method="POST" enctype="multipart/form-data">
+            <form
+                action="http://localhost:3000/home"
+                method="POST"
+                enctype="multipart/form-data"
+            >
                 <div>
                     <label for="image">Upload Image</label>
-                    <input /*onChange={handleFileInput} */type="file" id="image" 
-                        name="image" required></input>
+                    <input
+                        /*onChange={handleFileInput} */ type="file"
+                        id="image"
+                        name="image"
+                        required
+                    ></input>
                 </div>
                 <div>
                     <button type="submit">Submit</button>
                 </div>
             </form>
-        
         </div>
-            
-
     );
 };
 
