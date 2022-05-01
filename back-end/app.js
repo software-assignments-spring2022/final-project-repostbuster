@@ -195,7 +195,7 @@ app.get("/home", (req, res) => {
             res.status(500).send("An error occurred", err);
         } else {
             //location.reload();
-            res.redirect("http://167.172.141.103:4000/searchSetting");
+            res.redirect("http://localhost:4000/searchSetting");
         }
     });
 });
