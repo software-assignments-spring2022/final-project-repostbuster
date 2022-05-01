@@ -107,15 +107,23 @@ const Home = (props) => {
                 </Button>
             </div>
 
-            <div id="ImageUploadButton">
-                <input type="file" onChange={handleFileInput} />
-                <button onClick={handleClick}>Upload!</button>
+            <div class='grid-container-element'>
+              <div class='grid-child-element purple'>
+                <div id="ImageUploadButton">
+                    <input type="file" onChange={handleFileInput} />
+                    <button onClick={handleClick}>Upload!</button>
+                </div>
+              </div>
+
+              <div class='grid-child-element green'>
+
+                <form action="http://localhost:3001/home" method="POST">
+                    <input type="file" name="file" onChange={handleFileInput} />
+                    <input type="submit" value="Submit!!!" />
+                </form>
+              </div>
             </div>
 
-            <form action="http://localhost:3001/home" method="POST">
-                <input type="file" name="file" onChange={handleFileInput} />
-                <input type="submit" value="Submit!!!" />
-            </form>
 
             <InputGroup className="mb-3">
                 <FormControl
