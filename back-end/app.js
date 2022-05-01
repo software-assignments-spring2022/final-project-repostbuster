@@ -9,6 +9,7 @@ const axios = require("axios"); // middleware for making requests to APIs
 require("dotenv").config({ silent: true }); // load environmental variables from a hidden file named .env
 const morgan = require("morgan"); // middleware for nice logging of incoming HTTP requests
 const cors = require("cors");
+const fs = require('fs');
 const bodyParser = require("body-parser");
 const bcrypt = require('bcryptjs');
 const {UserModel} = require('./User');
@@ -19,13 +20,104 @@ const MongoDBSession = require('connect-mongodb-session')(session);
 const mongoose = require('mongoose');
 const User = require("./User");
 const { domain } = require("process");
-const mongoURI = "mongodb://localhost:27017/sessions";
+//const mongoURI = "mongodb://localhost:27017/sessions";
 
+/*
 mongoose
     .connect(mongoURI).then((res) => {
         console.log("MongoDB Connected");
     });
+*/
 
+/*---------------------------*/
+// --- IMAGE UPLOAD FUNCTIONALITY ---
+app.use('/public', express.static(path.join(__dirname, "/public")));
+
+//Connects to MongoDB Database
+mongoose.connect(process.env.MONGO_URL,
+    { useNewUrlParser: true, useUnifiedTopology: true }, err => {
+        console.log('connected')
+    });
+
+//Stores uploaded image files locally in the back-end
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        // default root folder of the app
+        cb(null, 'public/'); // OR /public/images
+    },
+    filename: (req, file, cb) => {
+        // take apart the uploaded file's name... create a new one based on it
+        // return extension of path.... from last '.' to end
+        const extension = path.extname(file.originalname); 
+        
+        // extracts filename from fully qualified path... 2nd arg --> extension to remove from result
+        const basenameWithoutExtension = path.basename(
+            file.originalname,
+            extension
+        ); 
+        
+        // create a new file name with a timestamp in the middle
+        //const newName = `${basenameWithoutExtension}-${Date.now()}${extension}`;
+
+        const  newName = 'uploaded_image'+`${extension}`;
+
+        // multer uses new filename for the uploaded file
+        cb(null, newName);
+    }
+});
+  
+var upload = multer({ storage: storage });
+
+// Schema for images
+var imgModel = require('./Image.js');
+
+// App changes page once image file is uploaded
+app.get('/home', (req, res) => {
+    
+    imgModel.find({}, (err, items) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('An error occurred', err);
+        }
+        else {
+            //location.reload();
+            res.redirect('http://localhost:4000/searchSetting');
+
+        }
+    
+    });
+
+});
+
+// Saves image into backend server
+app.post('/home', upload.single('image'), (req, res, next) => {
+  
+    var obj = {
+
+        img: {
+            data: fs.readFileSync(path.join(__dirname + '/public/' + req.file.filename)),
+            contentType: 'image/png'
+        }
+    }
+    console.log(obj);
+
+    res.redirect('/home');
+});
+
+/*--------------------------------------------*/
+// --- REVERSE IMAGE SEARCH API FUNCTIONALITY ---
+const delay = ms => new Promise(res => setTimeout(res, ms));
+app.post('/searchSetting', async (req, res) => {
+
+        await detectWeb("./public/uploaded_image.png");
+
+        //await delay(2000);
+        res.redirect('http://localhost:4000/results');
+
+
+});
+
+/*--------------------------------------------*/
 
 const authenticate = (req, res, next) => {
     const token = req.get('token');
@@ -59,8 +151,8 @@ app.use(bodyParser.urlencoded({ extended: true })); //parser information sent in
 app.use(bodyParser.json()); //body parser use JSON format
 
 // make 'public' directory publicly readable with static content
-const publicPath = path.join(__dirname, "public"); // instead of app.use("/static", express.static("public"));
-app.use(express.static(publicPath));
+//const publicPath = path.join(__dirname, "/public"); // instead of app.use("/static", express.static("public"));
+//app.use(express.static(publicPath));
 
 // reference to upload images
 // app.use("/image-upload", express.static("/public/"));
@@ -75,10 +167,6 @@ app.use(
     })
 );
 
-
-app.get("/home", (req, res) => {
-    res.send("Welcome to RepostBuster!");
-});
 
 //register
 app.post("/register", async (req, res) => {
@@ -169,63 +257,6 @@ app.post('/dashboard', authenticate, async (req, res) => {
 // export the express app we created to make it available to other modules
 module.exports = app; // CommonJS export style!
 
-// Dont forget to create unit tests for your respective functions!
-
-// Backend to do the Image I/O on the home page
-// Hyujun Choi
-/* app.get("/public/:imageName", (req, res) => {
-    const imageName = req.params.imageName;
-    const readStream = fs.createReadStream(`public/${imageName}`);
-    readStream.pipe(res);
-}); */
-
-// enable file uploads saved to disk in a directory named "public"
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        // default root folder of the app
-        cb(null, "public/"); // OR /public/images
-    },
-    filename: function (req, file, cb) {
-        // take apart the uploaded file's name... create a new one based on it
-        const extension = path.extname(file.originalname); // return extension of path.... from last '.' to end
-        const basenameWithoutExtension = path.basename(
-            file.originalname,
-            extension
-        ); // extracts filename from fully qualified path... 2nd arg --> extension to remove from result
-
-        // create a new file name with a timestamp in the middle
-        const newName = `${basenameWithoutExtension}-${Date.now()}${extension}`;
-
-        // multer uses new filename for the uploaded file
-        cb(null, newName);
-    },
-});
-
-const upload = multer({ storage: storage });
-// .single("image"); // Same "image" as data.append("image", event.target.files[0]);
-
-app.post("/image-upload", upload.array("image"), (req, res) => {
-    /* -------------------------------------------- Attempt 1
-    upload(req, res, (err) => {
-        // upload() handles req & res
-        if (err) {
-            res.status(500).send("Upload ERROR!!!!!!"); // Error handling
-        }
-        res.send(req.file);
-    });
-     */
-    /*  ---------------------------------------------------- attempt 2
-    const imagePath = req.file.path;
-    const description = req.body.description;
-
-    console.log(imagePath, description);
-    res.send({ imagePath, description }); 
-    */
-
-    console.log("POST request received to /public");
-    console.log("Axios POST body: ", req.body);
-    res.send("POST request received on server");
-});
 
 // Reverse Image Search API is called once user clicks the submit button on the Search Settings Page.
 // Camilo Villavicencio
@@ -240,52 +271,57 @@ async function detectWeb(fileName) {
     const client = new vision.ImageAnnotatorClient();
 
     // Detect similar images on the web to a local file
+    
     const [result] = await client.webDetection(fileName);
     const webDetection = result.webDetection;
+    
+    //console.log(webDetection);
 
-    //Full matching results
-    if (webDetection.fullMatchingImages.length) {
-        console.log(
-            `Full matches found: ${webDetection.fullMatchingImages.length}`
-        );
-        webDetection.fullMatchingImages.forEach((image) => {
-            console.log(`  URL: ${image.url}`);
-            console.log(`  Score: ${image.score}`);
-        });
-    }
 
-    //Partial matching results
-    if (webDetection.partialMatchingImages.length) {
-        console.log(
-            `Partial matches found: ${webDetection.partialMatchingImages.length}`
-        );
-        webDetection.partialMatchingImages.forEach((image) => {
-            console.log(`  URL: ${image.url}`);
-            console.log(`  Score: ${image.score}`);
-        });
-    }
+    var post_schema = mongoose.Schema({data : JSON});
+    var post_model = mongoose.model('image_results', post_schema);
 
-    //Web entity results
-    if (webDetection.webEntities.length) {
-        console.log(`Web entities found: ${webDetection.webEntities.length}`);
-        webDetection.webEntities.forEach((webEntity) => {
-            console.log(`  Description: ${webEntity.description}`);
-            console.log(`  Score: ${webEntity.score}`);
-        });
-    }
+    var newData = new post_model({data : webDetection});
 
-    //Labels
-    if (webDetection.bestGuessLabels.length) {
-        console.log(
-            `Best guess labels found: ${webDetection.bestGuessLabels.length}`
-        );
-        webDetection.bestGuessLabels.forEach((label) => {
-            console.log(`  Label: ${label.label}`);
-        });
-    }
+    //saving json schema to mongodb         
+
+    newData.save(function(err){
+        if (err) {
+                throw err;
+        }
+        console.log('INSERTED!');
+         createJSON();
+    });
+    
 
     console.log("GOOGLE API LOADED");
+
+    
     // [END vision_web_detection]
+}
+
+async function createJSON(){
+    //Writes response locally
+    const connection = mongoose.connection;
+    const collection = connection.db.collection("image_results");
+
+
+    collection.find({}).toArray(function(err, data){
+        console.log(data.length);
+
+        var index = 0;
+        if (data.length > 0){
+            index = data.length -1;
+        }
+        console.log(index);
+        const content = JSON.stringify(data[index], null, "\t")
+        //console.log(content); // it will print your collection data
+        fs.writeFile('./public/Output.json', content, err => {
+            if (err){
+                console.error(err);
+            }
+        })
+    });
 }
 
 // Use Express to store the Image Search results
@@ -297,6 +333,7 @@ app.get("/results", async (req, res) => {
     // get json from google api
 
     // parse to array -> "pagesWithMatchingImages"
+    /*
     const whitelist = new Set();
     if(req.user){
         const user = req.user;
@@ -304,7 +341,7 @@ app.get("/results", async (req, res) => {
         await UrlModel.find({user_id}).then((data) => {
             whitelist.push(data.url);
         });
-    }
+    }*/
     
     ///filtered Results
     /*
@@ -329,9 +366,30 @@ app.get("/results", async (req, res) => {
     .then(data => console.log(data))
     */
 
+    // ADD
+
+    /*
+    const connection = mongoose.connection;
+    const collection = connection.db.collection("image_results");
+
+    
+    collection.find({}).toArray(function(err, data){
+        const content = JSON.stringify(data[0], null, "\t")
+        //console.log(content); // it will print your collection data
+        fs.writeFile('./public/Output.json', content, err => {
+            if (err){
+                console.error(err);
+            }
+        })
+    });*/
+
+    /*
     var testData = require('./GoogleCloudAPI/exampleOutput.json');
     var body = testData.responses[0].webDetection.pagesWithMatchingImages
-
+    */
+    await delay(500);
+    var testData = require('./public/Output.json');
+    var body = testData.data.pagesWithMatchingImages
     // send the response as JSON text to the client
 
     res.json(body);
