@@ -20,6 +20,49 @@ body {
   color: #1A3C40;
   font: #1A3C40;
 }
+
+h1 {
+  color: #1A3C40;
+
+}
+
+h2 {
+  color: #1A3C40;
+
+}
+
+p {
+    color: #1A3C40;
+}
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    color: #1A3C40;
+}
+
+
+#button-addon1 {
+  font-size: 12px;
+  font-family: "Lucida Grande";
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  color: white;
+  display: inline-block;
+  padding: 0.4em 1em;
+  border: 0.1em solid #1D5C63;
+  border-radius: 0.38em;
+  background-image: linear-gradient(#417D7A, #1D5C63);
+}
+
+#ImageUploadButton {
+  color: #417D7A;
+}
+
+input[type="file"]::file-selector-button {
+    border-radius: 20px;
+    background-color: #417D7A;
+}
+
 ------
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
