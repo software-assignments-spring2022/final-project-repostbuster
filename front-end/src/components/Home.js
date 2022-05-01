@@ -40,7 +40,7 @@ const Home = (props) => {
             </div>
 
             <form
-                action="http://localhost:3000/home"
+                action="http://167.172.141.103:4000/home"
                 method="POST"
                 enctype="multipart/form-data"
             >
