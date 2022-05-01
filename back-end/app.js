@@ -379,9 +379,28 @@ app.get("/results", async (req, res) => {
     */
 
     // ADD
+
+    const connection = mongoose.connection;
+    const collection = connection.db.collection("image_results");
+
+    
+    collection.find({}).toArray(function(err, data){
+        const content = JSON.stringify(data[0], null, "\t")
+        console.log(content); // it will print your collection data
+        fs.writeFile('./public/Output.json', content, err => {
+            if (err){
+                console.error(err);
+            }
+        })
+    });
+
+    /*
     var testData = require('./GoogleCloudAPI/exampleOutput.json');
     var body = testData.responses[0].webDetection.pagesWithMatchingImages
+    */
 
+    var testData = require('./public/Output.json');
+    var body = testData.data.pagesWithMatchingImages
     // send the response as JSON text to the client
 
     res.json(body);
