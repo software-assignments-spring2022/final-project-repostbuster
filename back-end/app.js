@@ -81,7 +81,6 @@ app.get('/home', (req, res) => {
         }
         else {
             //location.reload();
-            //detectWeb("http://localhost:3000/public/uploaded_image.png");
             res.redirect('http://localhost:4000/searchSetting');
 
         }
@@ -108,12 +107,16 @@ app.post('/home', upload.single('image'), (req, res, next) => {
 /*--------------------------------------------*/
 // --- REVERSE IMAGE SEARCH API FUNCTIONALITY ---
 
-app.post('/searchSetting', (req, res) => {
+app.post('/searchSetting', async (req, res) => {
 
-    console.log("AAAAAAAAWWWW YEAHHHHHHHHH");
+        await detectWeb("./public/uploaded_image.png");
+        console.log("AAAAAAAAWWWW YEAHHHHHHHHH");
 
-    //detectWeb("./public/uploaded_image.png");
-    res.redirect('http://localhost:4000/results');
+        console.log("wtf");
+
+        res.redirect('http://localhost:4000/results');
+
+
 });
 
 /*--------------------------------------------*/
@@ -273,7 +276,7 @@ async function detectWeb(fileName) {
     
     const [result] = await client.webDetection(fileName);
     const webDetection = result.webDetection;
-    console.log("GOOGLE API LOADED");
+    
     //console.log(webDetection);
 
 
@@ -289,52 +292,38 @@ async function detectWeb(fileName) {
                 throw err;
         }
         console.log('INSERTED!');
+         createJSON();
     });
-    //NEED TO SEND RESULTS TO MONGODB 
-    /*
-    //Full matching results
-    if (webDetection.fullMatchingImages.length) {
-        console.log(
-            `Full matches found: ${webDetection.fullMatchingImages.length}`
-        );
-        webDetection.fullMatchingImages.forEach((image) => {
-            console.log(`  URL: ${image.url}`);
-            console.log(`  Score: ${image.score}`);
-        });
-    }
+    
 
-    //Partial matching results
-    if (webDetection.partialMatchingImages.length) {
-        console.log(
-            `Partial matches found: ${webDetection.partialMatchingImages.length}`
-        );
-        webDetection.partialMatchingImages.forEach((image) => {
-            console.log(`  URL: ${image.url}`);
-            console.log(`  Score: ${image.score}`);
-        });
-    }
+    console.log("GOOGLE API LOADED");
 
-    //Web entity results
-    if (webDetection.webEntities.length) {
-        console.log(`Web entities found: ${webDetection.webEntities.length}`);
-        webDetection.webEntities.forEach((webEntity) => {
-            console.log(`  Description: ${webEntity.description}`);
-            console.log(`  Score: ${webEntity.score}`);
-        });
-    }
-
-    //Labels
-    if (webDetection.bestGuessLabels.length) {
-        console.log(
-            `Best guess labels found: ${webDetection.bestGuessLabels.length}`
-        );
-        webDetection.bestGuessLabels.forEach((label) => {
-            console.log(`  Label: ${label.label}`);
-        });
-    }
-    */
     
     // [END vision_web_detection]
+}
+
+async function createJSON(){
+    //Writes response locally
+    const connection = mongoose.connection;
+    const collection = connection.db.collection("image_results");
+
+
+    collection.find({}).toArray(function(err, data){
+        console.log(data.length);
+
+        var index = 0;
+        if (data.length > 0){
+            index = data.length -1;
+        }
+        console.log(index);
+        const content = JSON.stringify(data[index], null, "\t")
+        //console.log(content); // it will print your collection data
+        fs.writeFile('./public/Output.json', content, err => {
+            if (err){
+                console.error(err);
+            }
+        })
+    });
 }
 
 // Use Express to store the Image Search results
@@ -346,6 +335,7 @@ app.get("/results", async (req, res) => {
     // get json from google api
 
     // parse to array -> "pagesWithMatchingImages"
+    /*
     const whitelist = new Set();
     if(req.user){
         const user = req.user;
@@ -353,7 +343,7 @@ app.get("/results", async (req, res) => {
         await UrlModel.find({user_id}).then((data) => {
             whitelist.push(data.url);
         });
-    }
+    }*/
     
     ///filtered Results
     /*
@@ -380,19 +370,20 @@ app.get("/results", async (req, res) => {
 
     // ADD
 
+    /*
     const connection = mongoose.connection;
     const collection = connection.db.collection("image_results");
 
     
     collection.find({}).toArray(function(err, data){
         const content = JSON.stringify(data[0], null, "\t")
-        console.log(content); // it will print your collection data
+        //console.log(content); // it will print your collection data
         fs.writeFile('./public/Output.json', content, err => {
             if (err){
                 console.error(err);
             }
         })
-    });
+    });*/
 
     /*
     var testData = require('./GoogleCloudAPI/exampleOutput.json');

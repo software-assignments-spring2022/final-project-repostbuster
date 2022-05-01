@@ -13,14 +13,15 @@ function Result(props) {
     return (
         <div className="result" key={props.link}>
             <div className="result-image">
+                {/*
                 <img
-                    /*src="https://picsum.photos/150/150"*/
-                    src="http://localhost:3000/public/uploaded_image.png"
+                    //src="https://picsum.photos/150/150"
+                    //src="http://localhost:3000/public/uploaded_image.png"
                     Image1
                     alt={props.source}
                     random={1}
                     width={175} height={175}
-                />
+                />*/}
             </div>
             <div className="details">
                 <p>{cleanTitle}</p>
