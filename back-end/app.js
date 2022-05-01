@@ -109,7 +109,7 @@ app.post('/home', upload.single('image'), (req, res, next) => {
 
 app.post('/searchSetting', async (req, res) => {
 
-        await detectWeb("./public/uploaded_image.png");
+        //await detectWeb("./public/uploaded_image.png");
         console.log("AAAAAAAAWWWW YEAHHHHHHHHH");
 
         console.log("wtf");
