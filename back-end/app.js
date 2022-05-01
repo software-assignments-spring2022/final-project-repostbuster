@@ -184,6 +184,9 @@ app.use("/logout", (req, res) => {
     });
 });
 
+// static route --> serves front-end built code
+app.use("/clinet", express.static("client"));
+
 // App changes page once image file is uploaded
 app.get("/home", (req, res) => {
     imgModel.find({}, (err, items) => {
