@@ -132,7 +132,7 @@ function Results() {
                         />
                     </>
                 ) : (
-                    <h1>No Posts to display</h1>
+                    <h1>Loading...</h1>
                 )}
             </div>
 
@@ -142,7 +142,7 @@ function Results() {
                         <Download data={results} />
                     </>
                 ) : (
-                    <h1>No Posts to display</h1>
+                    <h1>Loading...</h1>
                 )}
             </div>
         </div>

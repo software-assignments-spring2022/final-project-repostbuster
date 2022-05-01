@@ -185,6 +185,10 @@ code {
     display: block;
 }
 
+img{
+    background-color: white;
+}
+
 .delete {
     cursor: pointer;
     padding: 15;

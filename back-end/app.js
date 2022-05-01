@@ -106,14 +106,12 @@ app.post('/home', upload.single('image'), (req, res, next) => {
 
 /*--------------------------------------------*/
 // --- REVERSE IMAGE SEARCH API FUNCTIONALITY ---
-
+const delay = ms => new Promise(res => setTimeout(res, ms));
 app.post('/searchSetting', async (req, res) => {
 
-        //await detectWeb("./public/uploaded_image.png");
-        console.log("AAAAAAAAWWWW YEAHHHHHHHHH");
+        await detectWeb("./public/uploaded_image.png");
 
-        console.log("wtf");
-
+        //await delay(2000);
         res.redirect('http://localhost:4000/results');
 
 
@@ -389,7 +387,7 @@ app.get("/results", async (req, res) => {
     var testData = require('./GoogleCloudAPI/exampleOutput.json');
     var body = testData.responses[0].webDetection.pagesWithMatchingImages
     */
-
+    await delay(500);
     var testData = require('./public/Output.json');
     var body = testData.data.pagesWithMatchingImages
     // send the response as JSON text to the client
