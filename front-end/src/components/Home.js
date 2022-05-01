@@ -53,8 +53,6 @@ const Home = (props) => {
                     <button type="submit">Submit</button>
                 </div>
             </form>
-
-            <h1>Uploaded Images</h1>
         
         </div>
             
