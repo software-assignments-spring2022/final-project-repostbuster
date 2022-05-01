@@ -37,12 +37,12 @@ p {
 
 button, html input[type="button"], input[type="reset"], input[type="submit"] {
     color: #1A3C40;
+
 }
 
 
 #button-addon1 {
   font-size: 12px;
-  font-family: "Lucida Grande";
   text-decoration: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -54,8 +54,13 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
   background-image: linear-gradient(#417D7A, #1D5C63);
 }
 
+#button-addon1.hover {
+  background-image: linear-gradient(rgb(3,155,218), rgb(3,110,197));
+}
+
 #ImageUploadButton {
   color: #417D7A;
+
 }
 
 input[type="file"]::file-selector-button {
@@ -104,6 +109,8 @@ code {
     margin: 0 10vw;
 
 }
+
+
 
 /*uploadImage*/
 .tiles {
