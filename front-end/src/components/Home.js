@@ -27,38 +27,54 @@ const Home = (props) => {
 
     return (
         <div className="homeContent">
-            <div>
-                <h1>Reverse Image Search</h1>
-                <p>
-                    {" "}
-                    A tool that uses pictures to find pictures on the internet
-                </p>
-                <p></p>
-                <Button variant="secondary" size="lg" href="HowItWorks">
-                    Learn how it works!
-                </Button>
-            </div>
+          <div>
+            <h1>Reverse Image Search</h1>
+             <p>
+              {" "}
+              A tool that uses pictures to find pictures on the internet
+             </p>
+             <p></p>
+             <Button variant="secondary" size="lg" href="HowItWorks">
+                Learn how it works!
+             </Button>
+        </div>
+
+        <div class='grid-container-element'>
+          <div class='grid-child-element green'>
 
             <form
-                action="http://localhost:3000/home"
-                method="POST"
-                enctype="multipart/form-data"
+              action="http://localhost:3000/home"
+              method="POST"
+              enctype="multipart/form-data"
             >
-                <div>
-                    <label for="image">Upload Image</label>
-                    <input
-                        /*onChange={handleFileInput} */ type="file"
-                        id="image"
-                        name="image"
-                        required
-                    ></input>
-                </div>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
+              <div>
+                <label for="image">Upload Image</label>
+                <input
+                  /*onChange={handleFileInput} */ type="file"
+                  id="image"
+                  name="image"
+                  required
+                ></input>
+              </div>
+              <div>
+                <button type="submit">Submit</button>
+              </div>
             </form>
+          </div>
         </div>
-    );
-};
 
+
+        <InputGroup className="mb-3">
+          <FormControl
+              aria-label="Example text with button addon"
+              aria-describedby="basic-addon1"
+              placeholder="Enter Image URL..."
+          />
+
+          <Button variant="outline-secondary" id="button-addon1">
+            Search
+          </Button>
+        </InputGroup>
+  );
+};
 export default Home;
