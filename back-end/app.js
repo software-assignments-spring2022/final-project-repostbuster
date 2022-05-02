@@ -84,11 +84,16 @@ app.get("/home", (req, res) => {
 app.post("/register", async (req, res) => {
     const {username, email, password} = req.body;
 
-    let user = await UserModel.findOne({email});
+    let user = await UserModel.findOne({$or:[{email},{username}]});
      
     if(user){
-        return res.send(400);
+        if(user.username === username){
+            return res.status(400).send({errorMessage: "Username Taken. Try Again"});
+        }
+        return res.status(400).send({errorMessage: "Email Taken. Try Again"});
     }
+
+    
 
     const hashedPass = await bcrypt.hash(password, 12);
 
@@ -114,13 +119,13 @@ app.post("/login", async (req, res) => {
    const {email, password} = req.body;
    const user = await UserModel.findOne({email});
    if(!user){
-       return res.send(400);
+       return res.status(400).send({errorMessage: "This user does not exist. Try again"});
    }
 
    const isMatch = await bcrypt.compare(password, user.password);
 
    if(!isMatch){
-       return res.send(400);
+       return  res.status(400).send({errorMessage: "Incorrect password. Try again"});
    }
 
    const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET);
@@ -145,7 +150,13 @@ app.post('/dashboard', authenticate, async (req, res) => {
     const {username, email, oldPass, newPass, confPass} = req.body;
     const whitelist = req.body.whitelist ? req.body.whitelist.split('\n') : null;
     const hashedPass = await bcrypt.hash(newPass, 12);
-   
+    const user = await UserModel.findOne({oldEmail});
+    const isMatch = await bcrypt.compare(oldPass, user.password);
+
+   if(!isMatch){
+       return  res.status(400).send({errorMessage: "Incorrect password. Try again"});
+   }
+
     let updatedUser = await UserModel.findOneAndUpdate({oldEmail}, {username, email, hashedPass}, {upsert: false}).clone((err, data) => {
         if (err) return res.send(500, {error: err});
         if(whitelist){
@@ -161,9 +172,9 @@ app.post('/dashboard', authenticate, async (req, res) => {
         }
     });
 
-    console.log({username:updatedUser.username, email: updatedUser.email, whitelist: whitelist});
-    const accessToken = jwt.sign(updatedUser.email, process.env.ACCESS_TOKEN_SECRET);
-    return res.send({username:updatedUser.username, email: updatedUser.email, whitelist: whitelist, token: accessToken});
+    console.log({username:username, email: email, whitelist: whitelist});
+    const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET);
+    return res.send({username:username, email: email, whitelist: whitelist, token: accessToken});
 });
 
 // export the express app we created to make it available to other modules

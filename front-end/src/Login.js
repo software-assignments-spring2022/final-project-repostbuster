@@ -10,7 +10,7 @@ const Login = ({setUser}) =>{
         email: '',
         password: ''
       });
-
+    const [warning, setWarning] = React.useState({state: false, msg: ''});
     const handleChange = (event) => {
         setformValue({
             ...formValue,
@@ -24,7 +24,7 @@ const Login = ({setUser}) =>{
         // store the states in the form data
         const data = {...formValue};
           // make axios post request
-        await axios.post("http://localhost:3000/login", data, {
+        await axios.post("/login", data, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -35,6 +35,7 @@ const Login = ({setUser}) =>{
                 
             }).catch((error) => {
                 console.log(error);
+                setWarning({state: true, msg: error.response.data.errorMessage});
             });
           
     };
@@ -42,6 +43,11 @@ const Login = ({setUser}) =>{
     return (
         <div className="formContainer">
              {fireRedirect &&  <Navigate to="/dashboard" push={true}/>}
+             {warning.state ? 
+                        <div class="alert alert-danger" role="alert">
+                            {warning.msg}
+                        </div>
+                    : ''}
             <form onSubmit={handleSubmit}>
                 <div className="form-outline mb-4">
                 <input onChange={handleChange} name= "email" type="email" id="form2Example1" className="form-control" />

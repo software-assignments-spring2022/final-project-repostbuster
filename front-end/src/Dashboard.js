@@ -8,6 +8,7 @@ const Dashboard = ({setUser}) => {
     // [authenticated, setAuthenticated] = React.useState(false);
     const [info, setInfo] = React.useState(null);
     const [warning, setWarning] = React.useState({state: false, msg: ''});
+    const [success, setSuccess] = React.useState({state: false, msg: ''});
     const [formValue, setformValue] = React.useState({
         username:'',
         email: '',
@@ -56,11 +57,13 @@ const Dashboard = ({setUser}) => {
             }).then((res) => {
                   localStorage.removeItem('user');
                   localStorage.setItem('user', JSON.stringify({name: res.data.username, accessToken: res.data.token}));
-                  setInfo(JSON.parse(localStorage.getItem('user')).name);
-                  setUser(JSON.parse(localStorage.getItem('user')));
-  
+                  setUser({name: res.data.username, accessToken: res.data.token});
+                  setInfo(res.data.username);
+                  setSuccess({state: true, msg: "Information Successfully Updated"});
+
               }).catch((error) => {
                   console.log(error);
+                  setWarning({state: true, msg: error.response.data.errorMessage});
               });
         }
        
@@ -92,6 +95,11 @@ const Dashboard = ({setUser}) => {
                     {warning.state ? 
                         <div class="alert alert-danger" role="alert">
                             {warning.msg}
+                        </div>
+                    : ''}
+                    {success.state ? 
+                        <div class="alert alert-success" role="alert">
+                            {success.msg}
                         </div>
                     : ''}
                     <div class="col-12 col-lg-10 col-xl-8 mx-auto">
@@ -127,6 +135,8 @@ const Dashboard = ({setUser}) => {
                                     </div>
                                 </div>
                                 <hr class="my-4" />
+                                <h2 class="h3 mb-4 page-title">Change Info</h2>
+                                <br/>
                                 <div class="form-row">
                                     <div class="row mb-4">
                                         <div class="col-md-6">

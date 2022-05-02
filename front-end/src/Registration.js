@@ -12,7 +12,7 @@ const Registration = () =>{
         name:'',
         username:'',
       });
-
+    const [warning, setWarning] = React.useState({state: false, msg: ''});
     const handleChange = (event) => {
         setformValue({
             ...formValue,
@@ -26,7 +26,7 @@ const Registration = () =>{
         // store the states in the form data
         const data = {...formValue};
           // make axios post request
-        await axios.post("http://localhost:3001/register", data, {
+        await axios.post("/register", data, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -36,12 +36,19 @@ const Registration = () =>{
                 
             }).catch((error) => {
                 console.log(error);
+                setWarning({state: true, msg: error.response.data.errorMessage});
             });
           
     };
     
     return (
+        
         <div className="formContainer">
+            {warning.state ? 
+                        <div class="alert alert-danger" role="alert">
+                            {warning.msg}
+                        </div>
+                    : ''}
             <form onSubmit={handleSubmit}>
                 <div class="form-outline mb-4">
                     <input  onChange={handleChange}  name= "name" type="text" id="registerName" class="form-control" />
