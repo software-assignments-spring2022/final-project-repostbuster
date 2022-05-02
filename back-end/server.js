@@ -9,7 +9,7 @@ const server = require("./app");
 const port = process.env.PORT || 3000;
 
 const listener = server.listen(port, () => {
-    console.log("listening on "+port);
+    console.log("listening on " + port);
 });
 
 const close = () => {
@@ -18,5 +18,4 @@ const close = () => {
 
 module.exports = {
     close: close,
-}
-
+};

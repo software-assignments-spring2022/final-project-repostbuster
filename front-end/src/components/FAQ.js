@@ -25,7 +25,7 @@ function FAQ() {
             <p></p>
 
             <h2>Troubleshooting</h2>
-            <h3>X functionbality on RepostBuster isn't working properly. What Should I do?</h3>
+            <h3>X functionality on RepostBuster isn't working properly. What Should I do?</h3>
             <p>If you're having a problem with RepostBuster that is not addressed here, please contact us at [EMAIL].</p>
         </div>
 

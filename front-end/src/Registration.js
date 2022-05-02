@@ -21,7 +21,7 @@ const Registration = () =>{
         
     };
 
-      const handleSubmit = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         // store the states in the form data
         const data = {...formValue};
