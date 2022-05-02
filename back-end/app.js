@@ -189,7 +189,7 @@ app.use("/client", express.static("client"));
 
 const path = "http://" + __dirname + ":4000/searchSetting";
 const hostname = "167.172.141.103";
-const port = 3000;
+const port = 4000;
 
 // App changes page once image file is uploaded
 app.get("/home", (req, res) => {
