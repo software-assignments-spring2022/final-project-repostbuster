@@ -4,6 +4,8 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import axios from "axios";
 import "../styles.css";
+const path = require("path");
+
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = (props) => {
