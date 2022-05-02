@@ -25,6 +25,8 @@ const Home = (props) => {
         setImage(formData);
     };
 
+    const path = "https://" + __dirname + ":" + process.env.PORT + "/home";
+
     return (
         <div className="homeContent">
             <div>
@@ -39,11 +41,7 @@ const Home = (props) => {
                 </Button>
             </div>
 
-            <form
-                action="http://localhost:3000/home"
-                method="POST"
-                enctype="multipart/form-data"
-            >
+            <form action={path} method="POST" enctype="multipart/form-data">
                 <div>
                     <label for="image">Upload Image</label>
                     <input
