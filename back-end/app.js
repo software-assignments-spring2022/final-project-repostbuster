@@ -187,7 +187,7 @@ app.use("/logout", (req, res) => {
 // static route --> serves front-end built code
 app.use("/client", express.static("client"));
 
-const path = "http://" + __dirname + ":4000" + "/searchSetting";
+const path = "http://" + __dirname + ":4000/searchSetting";
 
 // App changes page once image file is uploaded
 app.get("/home", (req, res) => {
@@ -197,8 +197,8 @@ app.get("/home", (req, res) => {
             res.status(500).send("An error occurred", err);
         } else {
             //location.reload();
-            // res.redirect("http://localhost:4000/searchSetting");
-            res.redirect(path);
+            res.redirect("http://0.0.0.0:4000/searchSetting");
+            // res.redirect(path);
         }
     });
 });

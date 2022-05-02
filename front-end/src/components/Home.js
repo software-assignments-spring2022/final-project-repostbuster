@@ -41,7 +41,11 @@ const Home = (props) => {
                 </Button>
             </div>
 
-            <form action={path} method="POST" enctype="multipart/form-data">
+            <form
+                action="https://0.0.0.0:3000/home"
+                method="POST"
+                enctype="multipart/form-data"
+            >
                 <div>
                     <label for="image">Upload Image</label>
                     <input
