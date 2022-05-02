@@ -25,7 +25,7 @@ const Home = (props) => {
         setImage(formData);
     };
 
-    const path = "https://" + __dirname + ":" + process.env.PORT + "/home";
+    const path = "https://" + __dirname + ":3000/home";
 
     return (
         <div className="homeContent">

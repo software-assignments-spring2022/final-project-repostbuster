@@ -187,7 +187,7 @@ app.use("/logout", (req, res) => {
 // static route --> serves front-end built code
 app.use("/client", express.static("client"));
 
-const path = "http://" + __dirname + ":" + process.env.PORT + "/searchSetting";
+const path = "http://" + __dirname + ":4000" + "/searchSetting";
 
 // App changes page once image file is uploaded
 app.get("/home", (req, res) => {
