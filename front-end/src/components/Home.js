@@ -25,6 +25,10 @@ const Home = (props) => {
         setImage(formData);
     };
 
+    const event = () =>{
+      console.log(path.join(__dirname + "/home"));
+    }
+
     return (
         <div className="homeContent">
           <div>
@@ -43,7 +47,8 @@ const Home = (props) => {
             <div class='grid-child-element green'>
 
               <form
-                action="http://localhost:3000/home"
+                //action="http://localhost:3000/home"
+                action= {event}
                 method="POST"
                 enctype="multipart/form-data"
               >
@@ -75,7 +80,7 @@ const Home = (props) => {
               Search
             </Button>
           </InputGroup>
-          <h1>TESTETSTST</h1>
+          <h1>asdfasdfasdfasdf</h1>
         </div>
         
   );
