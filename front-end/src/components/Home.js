@@ -75,6 +75,7 @@ const Home = (props) => {
             Search
           </Button>
         </InputGroup>
+    </div>
   );
 };
 export default Home;
