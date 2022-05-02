@@ -149,6 +149,9 @@ async function createJSON() {
     });
 }
 
+// static route --> serves front-end built code
+app.use("/client", express.static("client"));
+
 // use the morgan middleware to log all incoming http requests
 app.use(morgan("dev", { skip: (req, res) => process.env.NODE_ENV === "test" })); // log all incoming requests, except when in unit test mode.
 // morgan has a few logging default styles - dev is a nice concise color-coded style
@@ -183,9 +186,6 @@ app.use("/logout", (req, res) => {
         res.send(200);
     });
 });
-
-// static route --> serves front-end built code
-app.use("/client", express.static("client"));
 
 // App changes page once image file is uploaded
 app.get("/home", (req, res) => {
