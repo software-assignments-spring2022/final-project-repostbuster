@@ -25,7 +25,7 @@ const corsOrigin = "http://localhost:4000";
 require("dotenv").config({ silent: true }); // load environmental variables from a hidden file named .env
 
 /*
-mongoose
+mongooseconst multer = require("multer")
     .connect(mongoURI).then((res) => {
         console.log("MongoDB Connected");
     });

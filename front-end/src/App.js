@@ -33,11 +33,12 @@ function App() {
       <BrowserRouter>
         <Header setUser={setUser} user={user}/>
         <Routes>
-
+        
           <Route path="/about" element={<About />}/>
           <Route path="/our-tech" element={<Technology />}/>
           <Route path="/upload" element={<UploadImage />}/>
 
+          <Route path="/" element={<Home />}/>
           <Route path="/home" element={<Home />}/>
           <Route path="/faq" element={<FAQ />}/>
 
