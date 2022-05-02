@@ -12,7 +12,7 @@ const Home = (props) => {
     const [image, setImage] = useState(null);
 
     const handleClick = () => {
-        axios.post("http://localhost:3000/home", image).then((res) => {
+        axios.post("/home", image).then((res) => {
             console.log("Axios response ", res);
         });
     };
@@ -49,8 +49,8 @@ const Home = (props) => {
             <div class='grid-child-element green'>
 
               <form
-                //action="http://localhost:3000/home"
-                action= {event}
+                action="/home"
+                //action= {event}
                 method="POST"
                 enctype="multipart/form-data"
               >

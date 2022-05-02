@@ -59,7 +59,7 @@ const SearchSetting = (props) => {
         event.preventDefault();
 
           // make axios post request
-        await axios.post("http://localhost:3000/searchSetting", {
+        await axios.post("/searchSetting", {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -106,9 +106,9 @@ const SearchSetting = (props) => {
             </header>
             
             <h2>Original Image</h2>
-                <img src ="http://localhost:3000/public/uploaded_image.png" width={175} height={175}/>
+                <img src ="/public/uploaded_image.png" width={175} height={175}/>
 
-            <form action="http://localhost:3000/searchSetting" method="POST" enctype="multipart/form-data">
+            <form action="/searchSetting" method="POST" enctype="multipart/form-data">
                 <div className="container">
 
                     {image && (

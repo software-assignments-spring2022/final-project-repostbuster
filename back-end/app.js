@@ -195,7 +195,7 @@ app.get("/home", (req, res) => {
             res.status(500).send("An error occurred", err);
         } else {
             //location.reload();
-            res.redirect("http://localhost:4000/searchSetting");
+            res.redirect("http://167.71.86.104:4000/searchSetting");
         }
     });
 });
@@ -221,7 +221,7 @@ app.post("/searchSetting", async (req, res) => {
     await detectWeb("./public/uploaded_image.png");
 
     //await delay(2000);
-    res.redirect("http://localhost:4000/results");
+    res.redirect("http://167.71.86.104:4000/results");
 });
 
 /*--------------------------------------------*/
