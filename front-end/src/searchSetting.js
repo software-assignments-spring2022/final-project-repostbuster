@@ -6,8 +6,8 @@ import React, {
     useCallback,
     useMemo,
 } from "react";
-// import axios from "axios";
-import { Navigate, Link, useSearchParams, useParams } from "react-router-dom";
+import axios from "axios";
+import {useNavigate, Navigate, Link, useSearchParams, useParams } from "react-router-dom";
 import { ReactDom, render } from "react-dom";
 import DatePicker from "./DatePicker";
 
@@ -53,6 +53,27 @@ const SearchSetting = (props) => {
         );
     };
 
+    const navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+          // make axios post request
+        await axios.post("http://localhost:3000/searchSetting", {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          }).then((res) => {
+                //console.log(res)
+                console.log("FUCK")
+                navigate('/login');
+                
+            }).catch((error) => {
+                console.log(error);
+            });
+          
+    };
+
     return (
         <div class="homeContent">
             <header className="navbar">
@@ -68,13 +89,14 @@ const SearchSetting = (props) => {
 
                 {/* Click submit --> redirect to searchSetting */}
                 {/* Give the image & file name to searchSetting */}
+                {/*
                 <a
                     class="btn btn-primary navbar__item_right"
                     href="results"
                     role="button">
                         Submit
                 </a>
-
+                */}
             <a
                 class="btn btn-primary navbar__item_left"
                 href="uploadImage"
@@ -82,57 +104,63 @@ const SearchSetting = (props) => {
                     Back
             </a>
             </header>
+            
+            <h2>Original Image</h2>
+                <img src ="http://localhost:3000/public/uploaded_image.png" width={175} height={175}/>
 
-            <div className="container">
+            <form action="http://localhost:3000/searchSetting" method="POST" enctype="multipart/form-data">
+                <div className="container">
 
-            {image && (
-                <div className="preview">
-                    <img
-                        className="image"
-                        src={URL.createObjectURL(image)}
-                        alt="Thumb"
-                    />
-                    <button className="delete" onClick={removeImage}>
-                        Remove This Image
-                    </button>
+                    {image && (
+                        <div className="preview">
+                            <img
+                                className="image"
+                                src={URL.createObjectURL(image)}
+                                alt="Thumb"
+                            />
+                            <button className="delete" onClick={removeImage}>
+                                Remove This Image
+                            </button>
+                        </div>
+                    )}
+                    {/*<DatePicker />*/}
+                    <div>
+                        {/* <label>
+                            <input
+                                type="checkbox"
+                                checked={checked}
+                                onChange={handleCheck}
+                            />
+                            My Value
+                            <p>is "My Value" checked? {checked.toString()}</p>
+                        </label> */}
+                        <li className="checkOption">
+                            <Checkbox
+                                label="Select One"
+                                value={checkedOne}
+                                onChange={handleCheckOne}
+                            />
+                            <Checkbox
+                                label="Select Two"
+                                value={checkedTwo}
+                                onChange={handleCheckTwo}
+                            />
+                            <Checkbox
+                                label="Select Three"
+                                value={checkedThree}
+                                onChange={handleCheckThree}
+                            />
+                            <Checkbox
+                                label="Select Four"
+                                value={checkedFour}
+                                onChange={handleCheckFour}
+                            />
+                            <button type="submit">Submit</button>
+                        </li>
+                    </div>
                 </div>
-            )}
-            <DatePicker />
-                <div>
-                    {/* <label>
-                        <input
-                            type="checkbox"
-                            checked={checked}
-                            onChange={handleCheck}
-                        />
-                        My Value
-                        <p>is "My Value" checked? {checked.toString()}</p>
-                    </label> */}
-                    <li className="checkOption">
-                        <Checkbox
-                            label="Select One"
-                            value={checkedOne}
-                            onChange={handleCheckOne}
-                        />
-                        <Checkbox
-                            label="Select Two"
-                            value={checkedTwo}
-                            onChange={handleCheckTwo}
-                        />
-                        <Checkbox
-                            label="Select Three"
-                            value={checkedThree}
-                            onChange={handleCheckThree}
-                        />
-                        <Checkbox
-                            label="Select Four"
-                            value={checkedFour}
-                            onChange={handleCheckFour}
-                        />
-                        <button type="submit">Submit</button>
-                    </li>
-                </div>
-            </div>
+            </form>
+            
         </div>
 
     );

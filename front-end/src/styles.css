@@ -245,6 +245,10 @@ code {
     display: block;
 }
 
+img{
+    background-color: white;
+}
+
 .delete {
     cursor: pointer;
     padding: 15;
@@ -257,9 +261,11 @@ code {
 }
 
 .checkOption {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
+    display: inline-block;
+    float: left;
+
+    /*justify-content: space-between;
+    padding: 8px 0;*/
 
     /* width: 200px;
 

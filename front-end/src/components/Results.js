@@ -116,7 +116,8 @@ function Results() {
         <div className="container">
             <div className="original">
                 <h2>Original Image</h2>
-                <LoremPicsum width={175} height={175} />
+                <img src ="http://localhost:3000/public/uploaded_image.png" width={175} height={175}/>
+                {/*<LoremPicsum width={175} height={175} />*/}
             </div>
 
             <div className="result-container">
@@ -131,7 +132,7 @@ function Results() {
                         />
                     </>
                 ) : (
-                    <h1>No Posts to display</h1>
+                    <h1>Loading...</h1>
                 )}
             </div>
 
@@ -141,7 +142,7 @@ function Results() {
                         <Download data={results} />
                     </>
                 ) : (
-                    <h1>No Posts to display</h1>
+                    <h1>Loading...</h1>
                 )}
             </div>
         </div>
