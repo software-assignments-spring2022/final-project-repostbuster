@@ -26,6 +26,8 @@ const Home = (props) => {
     };
 
     const path = "https://" + __dirname + ":3000/home";
+    const hostname = "167.172.141.103";
+    const port = 3000;
 
     return (
         <div className="homeContent">
@@ -42,7 +44,7 @@ const Home = (props) => {
             </div>
 
             <form
-                action="https://0.0.0.0:3000/home"
+                action={"https://" + hostname + ":" + port + "/home"}
                 method="POST"
                 enctype="multipart/form-data"
             >

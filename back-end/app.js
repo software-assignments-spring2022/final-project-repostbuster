@@ -188,6 +188,8 @@ app.use("/logout", (req, res) => {
 app.use("/client", express.static("client"));
 
 const path = "http://" + __dirname + ":4000/searchSetting";
+const hostname = "167.172.141.103";
+const port = 3000;
 
 // App changes page once image file is uploaded
 app.get("/home", (req, res) => {
@@ -197,7 +199,7 @@ app.get("/home", (req, res) => {
             res.status(500).send("An error occurred", err);
         } else {
             //location.reload();
-            res.redirect("http://0.0.0.0:4000/searchSetting");
+            res.redirect(`http://${hostname}:${port}/searchSetting`);
             // res.redirect(path);
         }
     });
