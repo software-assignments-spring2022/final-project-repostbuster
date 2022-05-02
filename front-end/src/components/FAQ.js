@@ -1,5 +1,5 @@
 import React from "react";
-import './FAQ.css';
+import "../styles.css"
 
 function FAQ() {
     return (
@@ -12,7 +12,7 @@ function FAQ() {
             <p>Bellow are links to guides on how to file a copyright complaint on some popular social media platforms:</p>
 
             <li>
-                <a href="https://help.twitter.com/en/rules-and-policies/copyright-policy">Twitter's Copyright Policy</a> 
+                <a href="https://help.twitter.com/en/rules-and-policies/copyright-policy">Twitter's Copyright Policy</a>
             </li>
             <li>
                 <a href="https://help.instagram.com/126382350847838">Instagram's Copyright Policy</a>
@@ -25,11 +25,11 @@ function FAQ() {
             <p></p>
 
             <h2>Troubleshooting</h2>
-            <h3>X functionbality on RepostBuster isn't working properly. What Should I do?</h3>
+            <h3>X functionality on RepostBuster isn't working properly. What Should I do?</h3>
             <p>If you're having a problem with RepostBuster that is not addressed here, please contact us at [EMAIL].</p>
         </div>
-        
-        
+
+
     );
 }
 

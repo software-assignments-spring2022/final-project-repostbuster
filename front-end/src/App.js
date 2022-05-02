@@ -19,13 +19,14 @@ import Dashboard from "./Dashboard";
 import UploadExample from "./upload-example.js";
 import React from "react";
 
-function RequireAuth({ children }) {
-  return localStorage.getItem('token') ? children  : <Navigate to='/login' replace/>;
-}
+
 
 function App() {
 
-  const [user, setUser] = React.useState(localStorage.getItem('token'));
+  function RequireAuth({ children }) {
+    return localStorage.getItem('user') ? children  : <Navigate to='/login' replace/>;
+  }
+  const [user, setUser] = React.useState(localStorage.getItem('user'));
 
   return (
     <div>
@@ -47,7 +48,7 @@ function App() {
 
           <Route name="login" path="/login" element={<Login setUser={setUser}/>}/>
           <Route name="register" path="/register" element={<Registration />}/>
-          <Route name="dashboard" path="/dashboard" element = {<RequireAuth> <Dashboard/> </RequireAuth>}/>
+          <Route name="dashboard" path="/dashboard" element = {<RequireAuth> <Dashboard setUser={setUser}/> </RequireAuth>}/>
         </Routes>
       </BrowserRouter>
     </div>
